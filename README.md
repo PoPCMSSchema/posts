@@ -20,6 +20,8 @@ Via Composer
 $ composer require getpop/posts
 ```
 
+([PoP](https://github.com/leoloso/PoP) must be installed)
+
 <!--
 ## Usage
 
