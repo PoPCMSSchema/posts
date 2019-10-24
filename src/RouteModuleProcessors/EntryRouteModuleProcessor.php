@@ -45,14 +45,14 @@ class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
 
             // Single
             $ret[PostRouteNatures::POST][] = [
-                'module' => [PoP_Posts_Module_Processor_FieldDataloads::class, PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_DATAQUERY_SINGLEPOST_FIELDS],
+                'module' => [\PoP_Posts_Module_Processor_FieldDataloads::class, \PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_DATAQUERY_SINGLEPOST_FIELDS],
                 'conditions' => [
                     'scheme' => POP_SCHEME_API,
                 ],
             ];
             // REST API Single
             $ret[PostRouteNatures::POST][] = [
-                'module' => [PoP_Posts_Module_Processor_FieldDataloads::class, PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_DATAQUERY_SINGLEPOST_FIELDS, ['fields' => isset($vars['query']) ? $vars['query'] : self::getRESTFields()]],
+                'module' => [\PoP_Posts_Module_Processor_FieldDataloads::class, \PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_DATAQUERY_SINGLEPOST_FIELDS, ['fields' => isset($vars['query']) ? $vars['query'] : self::getRESTFields()]],
                 'conditions' => [
                     'scheme' => POP_SCHEME_API,
                     'datastructure' => GD_DATALOAD_DATASTRUCTURE_REST,
@@ -74,7 +74,7 @@ class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
 
             // Page
             $routemodules = array(
-                POP_POSTS_ROUTE_POSTS => [PoP_Posts_Module_Processor_FieldDataloads::class, PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_DATAQUERY_POSTLIST_FIELDS],
+                POP_POSTS_ROUTE_POSTS => [\PoP_Posts_Module_Processor_FieldDataloads::class, \PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_DATAQUERY_POSTLIST_FIELDS],
             );
             foreach ($routemodules as $route => $module) {
                 $ret[RouteNatures::STANDARD][$route][] = [
@@ -87,7 +87,7 @@ class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
 
             // REST API Page
             $routemodules = array(
-                POP_POSTS_ROUTE_POSTS => [PoP_Posts_Module_Processor_FieldDataloads::class, PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_DATAQUERY_POSTLIST_FIELDS, ['fields' => isset($vars['query']) ? $vars['query'] : self::getRESTFields()]],
+                POP_POSTS_ROUTE_POSTS => [\PoP_Posts_Module_Processor_FieldDataloads::class, \PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_DATAQUERY_POSTLIST_FIELDS, ['fields' => isset($vars['query']) ? $vars['query'] : self::getRESTFields()]],
             );
             foreach ($routemodules as $route => $module) {
                 $ret[RouteNatures::STANDARD][$route][] = [
