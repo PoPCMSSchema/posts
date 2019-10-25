@@ -12,7 +12,7 @@ class ServiceConfiguration
     {
         // Add RouteModuleProcessors to the Manager
         // Load API and RESTAPI conditional classes
-        if (class_exists('\PoP\API\Component') && !\PoP\API\Configuration\Environment::disableAPI()) {
+        if (class_exists('\PoP\API\Component') && !\PoP\API\Environment::disableAPI()) {
             ContainerBuilderUtils::injectServicesIntoService(
                 'route_module_processor_manager',
                 'PoP\\Posts\\Conditional\\API\\RouteModuleProcessors',
