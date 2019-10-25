@@ -18,13 +18,13 @@ class ServiceConfiguration
                 'PoP\\Posts\\Conditional\\API\\RouteModuleProcessors',
                 'add'
             );
-            if (class_exists('\PoP\RESTAPI\Component')) {
-                ContainerBuilderUtils::injectServicesIntoService(
-                    'route_module_processor_manager',
-                    'PoP\\Posts\\Conditional\\RESTAPI\\RouteModuleProcessors',
-                    'add'
-                );
-            }
+        }
+        if (class_exists('\PoP\RESTAPI\Component') && \PoP\RESTAPI\Component::isEnabled()) {
+            ContainerBuilderUtils::injectServicesIntoService(
+                'route_module_processor_manager',
+                'PoP\\Posts\\Conditional\\RESTAPI\\RouteModuleProcessors',
+                'add'
+            );
         }
     }
 }
