@@ -25,7 +25,6 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
             'title',
             'content',
             'url',
-            'endpoint',
             'excerpt',
             'status',
             'is-draft',
@@ -44,7 +43,6 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
             'title' => SchemaDefinition::TYPE_STRING,
             'content' => SchemaDefinition::TYPE_STRING,
             'url' => SchemaDefinition::TYPE_URL,
-            'endpoint' => SchemaDefinition::TYPE_URL,
             'excerpt' => SchemaDefinition::TYPE_STRING,
             'status' => SchemaDefinition::TYPE_ENUM,
             'is-draft' => SchemaDefinition::TYPE_BOOL,
@@ -65,7 +63,6 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
             'title' => $translationAPI->__('Post title', 'pop-posts'),
             'content' => $translationAPI->__('Post content', 'pop-posts'),
             'url' => $translationAPI->__('Post URL', 'pop-posts'),
-            'endpoint' => $translationAPI->__('Endpoint to fetch the post\'s data', 'pop-posts'),
             'excerpt' => $translationAPI->__('Post excerpt', 'pop-posts'),
             'status' => $translationAPI->__('Post status', 'pop-posts'),
             'is-draft' => $translationAPI->__('Is the post in \'draft\' status?', 'pop-posts'),
@@ -204,9 +201,6 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
 
             case 'url':
                 return $cmspostsapi->getPermalink($fieldResolver->getId($post));
-
-            case 'endpoint':
-                return \PoP\API\APIUtils::getEndpoint($fieldResolver->resolveValue($resultItem, 'url'));
 
             case 'excerpt':
                 return $cmspostsapi->getExcerpt($fieldResolver->getId($post));
