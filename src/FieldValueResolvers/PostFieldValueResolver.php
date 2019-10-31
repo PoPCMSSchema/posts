@@ -141,7 +141,7 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDeprecationDescription($fieldResolver, $fieldName, $fieldArgs);
     }
 
-    protected function addFieldDocumentation(array &$documentation, string $fieldName)
+    protected function addSchemaDefinitionForField(array &$documentation, string $fieldName)
     {
         switch ($fieldName) {
             case 'status':
