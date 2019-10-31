@@ -41,13 +41,13 @@ abstract class AbstractPostFieldValueResolver extends AbstractDBDataFieldValueRe
         return parent::getSchemaFieldArgs($fieldResolver, $fieldName);
     }
 
-    public function enableOrderedFieldDocumentationArgs(FieldResolverInterface $fieldResolver, string $fieldName): bool
+    public function enableOrderedSchemaFieldArgs(FieldResolverInterface $fieldResolver, string $fieldName): bool
     {
         switch ($fieldName) {
             case 'posts':
                 return false;
         }
-        return parent::enableOrderedFieldDocumentationArgs($fieldResolver, $fieldName);
+        return parent::enableOrderedSchemaFieldArgs($fieldResolver, $fieldName);
     }
 
     protected function getQuery(FieldResolverInterface $fieldResolver, $resultItem, string $fieldName, array $fieldArgs = []): array
