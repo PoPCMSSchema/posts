@@ -34,7 +34,7 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
         ];
     }
 
-    public function getFieldDocumentationType(FieldResolverInterface $fieldResolver, string $fieldName): ?string
+    public function getSchemaFieldType(FieldResolverInterface $fieldResolver, string $fieldName): ?string
     {
         $types = [
             'post-type' => SchemaDefinition::TYPE_STRING,
@@ -50,10 +50,10 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
             'date' => SchemaDefinition::TYPE_DATE,
             'datetime' => SchemaDefinition::TYPE_DATE,
         ];
-        return $types[$fieldName] ?? parent::getFieldDocumentationType($fieldResolver, $fieldName);
+        return $types[$fieldName] ?? parent::getSchemaFieldType($fieldResolver, $fieldName);
     }
 
-    public function getFieldDocumentationDescription(FieldResolverInterface $fieldResolver, string $fieldName): ?string
+    public function getSchemaFieldDescription(FieldResolverInterface $fieldResolver, string $fieldName): ?string
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
@@ -70,10 +70,10 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
             'date' => $translationAPI->__('Post published date', 'pop-posts'),
             'datetime' => $translationAPI->__('Post published date and time', 'pop-posts'),
         ];
-        return $descriptions[$fieldName] ?? parent::getFieldDocumentationDescription($fieldResolver, $fieldName);
+        return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($fieldResolver, $fieldName);
     }
 
-    public function getFieldDocumentationArgs(FieldResolverInterface $fieldResolver, string $fieldName): array
+    public function getSchemaFieldArgs(FieldResolverInterface $fieldResolver, string $fieldName): array
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $cmsengineapi = \PoP\Engine\FunctionAPIFactory::getInstance();
@@ -113,10 +113,10 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
                 ];
         }
 
-        return parent::getFieldDocumentationArgs($fieldResolver, $fieldName);
+        return parent::getSchemaFieldArgs($fieldResolver, $fieldName);
     }
 
-    public function getFieldDocumentationDeprecationDescription(FieldResolverInterface $fieldResolver, string $fieldName, array $fieldArgs = []): ?string
+    public function getSchemaFieldDeprecationDescription(FieldResolverInterface $fieldResolver, string $fieldName, array $fieldArgs = []): ?string
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $placeholder_status = $translationAPI->__('Use \'is-status(status:%s)\' instead of \'%s\'', 'pop-posts');
@@ -138,7 +138,7 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
                 $fieldName
             ),
         ];
-        return $descriptions[$fieldName] ?? parent::getFieldDocumentationDeprecationDescription($fieldResolver, $fieldName, $fieldArgs);
+        return $descriptions[$fieldName] ?? parent::getSchemaFieldDeprecationDescription($fieldResolver, $fieldName, $fieldArgs);
     }
 
     protected function addFieldDocumentation(array &$documentation, string $fieldName)

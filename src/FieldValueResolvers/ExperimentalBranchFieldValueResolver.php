@@ -20,12 +20,12 @@ class ExperimentalBranchFieldValueResolver extends PostFieldValueResolver
         ];
     }
 
-    public function getFieldDocumentationArgs(FieldResolverInterface $fieldResolver, string $fieldName): array
+    public function getSchemaFieldArgs(FieldResolverInterface $fieldResolver, string $fieldName): array
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         switch ($fieldName) {
             case 'excerpt':
-                $ret = parent::getFieldDocumentationArgs($fieldResolver, $fieldName);
+                $ret = parent::getSchemaFieldArgs($fieldResolver, $fieldName);
                 $ret[] = [
                     'name' => 'branch',
                     'type' => SchemaDefinition::TYPE_STRING,
@@ -44,7 +44,7 @@ class ExperimentalBranchFieldValueResolver extends PostFieldValueResolver
                 return $ret;
         }
 
-        return parent::getFieldDocumentationArgs($fieldResolver, $fieldName);
+        return parent::getSchemaFieldArgs($fieldResolver, $fieldName);
     }
 
     public function resolveValue(FieldResolverInterface $fieldResolver, $resultItem, string $fieldName, array $fieldArgs = [])
