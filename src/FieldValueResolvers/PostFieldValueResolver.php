@@ -141,11 +141,11 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDeprecationDescription($fieldResolver, $fieldName, $fieldArgs);
     }
 
-    protected function addSchemaDefinitionForField(array &$documentation, string $fieldName)
+    protected function addSchemaDefinitionForField(array &$schemaDefinition, string $fieldName)
     {
         switch ($fieldName) {
             case 'status':
-                $documentation[SchemaDefinition::ARGNAME_ENUMVALUES] = $this->getPostStatuses();
+                $schemaDefinition[SchemaDefinition::ARGNAME_ENUMVALUES] = $this->getPostStatuses();
                 break;
         }
     }
