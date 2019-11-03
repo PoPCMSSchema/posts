@@ -1,10 +1,11 @@
 <?php
 namespace PoP\Posts\FieldValueResolvers;
 
-use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\Schema\SchemaDefinition;
-use PoP\ComponentModel\FieldValueResolvers\AbstractDBDataFieldValueResolver;
+use PoP\ComponentModel\Schema\TypeCastingHelpers;
+use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\FieldResolvers\FieldResolverInterface;
+use PoP\ComponentModel\FieldValueResolvers\AbstractDBDataFieldValueResolver;
 
 abstract class AbstractPostFieldValueResolver extends AbstractDBDataFieldValueResolver
 {
@@ -18,7 +19,7 @@ abstract class AbstractPostFieldValueResolver extends AbstractDBDataFieldValueRe
     public function getSchemaFieldType(FieldResolverInterface $fieldResolver, string $fieldName): ?string
     {
         $types = [
-			'posts' => \PoP\ComponentModel\DataloadUtils::combineTypes(SchemaDefinition::TYPE_ARRAY, SchemaDefinition::TYPE_ID),
+			'posts' => TypeCastingHelpers::combineTypes(SchemaDefinition::TYPE_ARRAY, SchemaDefinition::TYPE_ID),
         ];
         return $types[$fieldName] ?? parent::getSchemaFieldType($fieldResolver, $fieldName);
     }
