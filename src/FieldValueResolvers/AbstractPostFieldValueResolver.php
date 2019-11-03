@@ -36,7 +36,7 @@ abstract class AbstractPostFieldValueResolver extends AbstractDBDataFieldValueRe
     {
         switch ($fieldName) {
             case 'posts':
-                return $this->getFieldArgumentsDocumentation($fieldResolver, $fieldName);
+                return $this->getFieldArgumentsSchemaDefinitions($fieldResolver, $fieldName);
         }
         return parent::getSchemaFieldArgs($fieldResolver, $fieldName);
     }
