@@ -8,6 +8,7 @@ use PoP\ComponentModel\FieldValueResolvers\AbstractDBDataFieldValueResolver;
 use PoP\ComponentModel\FieldResolvers\FieldResolverInterface;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\Posts\FieldResolvers\PostFieldResolver;
+use PoP\FieldQuery\FieldQueryUtils;
 
 class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
 {
@@ -165,17 +166,23 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
             return $error;
         }
 
-        $translationAPI = TranslationAPIFacade::getInstance();
-        switch ($fieldName) {
-            case 'is-status':
-                $status = $fieldArgs['status'];
-                if (!in_array($status, $this->getPostStatuses())) {
-                    return sprintf(
-                        $translationAPI->__('Argument \'status\' can only have these values: \'%s\'', 'pop-posts'),
-                        implode($translationAPI->__('\', \''), $this->getPostStatuses())
-                    );
-                }
-                break;
+        // Important: The validations below can only be done if no fieldArg contains a field!
+        // That is because this is a schema error, so we still don't have the $resultItem against which to resolve the field
+        // For instance, this doesn't work: /?query=arrayItem(posts(),3)
+        // In that case, the validation will be done inside ->resolveValue(), and will be treated as a $dbError, not a $schemaError
+        if (!FieldQueryUtils::isAnyFieldArgumentValueAField($fieldArgs)) {
+            $translationAPI = TranslationAPIFacade::getInstance();
+            switch ($fieldName) {
+                case 'is-status':
+                    $status = $fieldArgs['status'];
+                    if (!in_array($status, $this->getPostStatuses())) {
+                        return sprintf(
+                            $translationAPI->__('Argument \'status\' can only have these values: \'%s\'', 'pop-posts'),
+                            implode($translationAPI->__('\', \''), $this->getPostStatuses())
+                        );
+                    }
+                    break;
+            }
         }
 
         return null;
