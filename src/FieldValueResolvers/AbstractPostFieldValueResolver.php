@@ -67,7 +67,7 @@ abstract class AbstractPostFieldValueResolver extends AbstractDBDataFieldValueRe
         return [];
     }
 
-    public function resolveValue(FieldResolverInterface $fieldResolver, $resultItem, string $fieldName, array $fieldArgs = [])
+    public function resolveValue(FieldResolverInterface $fieldResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
         $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
         switch ($fieldName) {
@@ -80,7 +80,7 @@ abstract class AbstractPostFieldValueResolver extends AbstractDBDataFieldValueRe
                 return $cmspostsapi->getPosts($query, $options);
         }
 
-        return parent::resolveValue($fieldResolver, $resultItem, $fieldName, $fieldArgs);
+        return parent::resolveValue($fieldResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
     }
 
     public function resolveFieldDefaultDataloaderClass(FieldResolverInterface $fieldResolver, string $fieldName, array $fieldArgs = []): ?string

@@ -188,7 +188,7 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
         return null;
     }
 
-    public function resolveValue(FieldResolverInterface $fieldResolver, $resultItem, string $fieldName, array $fieldArgs = [])
+    public function resolveValue(FieldResolverInterface $fieldResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
         $cmspostsresolver = \PoP\Posts\ObjectPropertyResolverFactory::getInstance();
         $cmsengineapi = \PoP\Engine\FunctionAPIFactory::getInstance();
@@ -222,7 +222,7 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
                 return \POP_POSTSTATUS_PUBLISHED == $cmspostsapi->getPostStatus($fieldResolver->getId($post));
 
             case 'not-published':
-                return !$fieldResolver->resolveValue($post, 'published');
+                return !$fieldResolver->resolveValue($post, 'published', $variables, $expressions, $options);
 
             case 'is-status':
                 return $fieldArgs['status'] == $cmspostsapi->getPostStatus($fieldResolver->getId($post));
@@ -242,6 +242,6 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
                 return $cmsengineapi->getDate($format, $date);
         }
 
-        return parent::resolveValue($fieldResolver, $resultItem, $fieldName, $fieldArgs);
+        return parent::resolveValue($fieldResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
     }
 }

@@ -47,17 +47,17 @@ class ExperimentalBranchFieldValueResolver extends PostFieldValueResolver
         return parent::getSchemaFieldArgs($fieldResolver, $fieldName);
     }
 
-    public function resolveValue(FieldResolverInterface $fieldResolver, $resultItem, string $fieldName, array $fieldArgs = [])
+    public function resolveValue(FieldResolverInterface $fieldResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
         switch ($fieldName) {
             case 'excerpt':
                 // Obtain the required parameter values (or default to some basic values)
                 $length = $fieldArgs['length'] ?? 100;
                 $more = $fieldArgs['more'] ?? '';
-                $excerpt = parent::resolveValue($fieldResolver, $resultItem, $fieldName, $fieldArgs);
+                $excerpt = parent::resolveValue($fieldResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
                 return (strlen($excerpt) > $length) ? mb_substr($excerpt, 0, $length) . $more : $excerpt;
         }
 
-        return parent::resolveValue($fieldResolver, $resultItem, $fieldName, $fieldArgs);
+        return parent::resolveValue($fieldResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
     }
 }
