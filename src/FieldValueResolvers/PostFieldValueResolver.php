@@ -5,16 +5,16 @@ use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\FieldValueResolvers\AbstractDBDataFieldValueResolver;
-use PoP\ComponentModel\FieldResolvers\FieldResolverInterface;
+use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\LooseContracts\Facades\NameResolverFacade;
-use PoP\Posts\FieldResolvers\PostFieldResolver;
+use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\FieldQuery\FieldQueryUtils;
 
 class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
 {
     public static function getClassesToAttachTo(): array
     {
-        return array(PostFieldResolver::class);
+        return array(PostTypeResolver::class);
     }
 
     public static function getFieldNamesToResolve(): array
@@ -35,7 +35,7 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
         ];
     }
 
-    public function getSchemaFieldType(FieldResolverInterface $fieldResolver, string $fieldName): ?string
+    public function getSchemaFieldType(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $types = [
             'post-type' => SchemaDefinition::TYPE_STRING,
@@ -51,10 +51,10 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
             'date' => SchemaDefinition::TYPE_DATE,
             'datetime' => SchemaDefinition::TYPE_DATE,
         ];
-        return $types[$fieldName] ?? parent::getSchemaFieldType($fieldResolver, $fieldName);
+        return $types[$fieldName] ?? parent::getSchemaFieldType($typeResolver, $fieldName);
     }
 
-    public function getSchemaFieldDescription(FieldResolverInterface $fieldResolver, string $fieldName): ?string
+    public function getSchemaFieldDescription(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
@@ -71,10 +71,10 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
             'date' => $translationAPI->__('Post published date', 'pop-posts'),
             'datetime' => $translationAPI->__('Post published date and time', 'pop-posts'),
         ];
-        return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($fieldResolver, $fieldName);
+        return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
     }
 
-    public function getSchemaFieldArgs(FieldResolverInterface $fieldResolver, string $fieldName): array
+    public function getSchemaFieldArgs(TypeResolverInterface $typeResolver, string $fieldName): array
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $cmsengineapi = \PoP\Engine\FunctionAPIFactory::getInstance();
@@ -114,10 +114,10 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
                 ];
         }
 
-        return parent::getSchemaFieldArgs($fieldResolver, $fieldName);
+        return parent::getSchemaFieldArgs($typeResolver, $fieldName);
     }
 
-    public function getSchemaFieldDeprecationDescription(FieldResolverInterface $fieldResolver, string $fieldName, array $fieldArgs = []): ?string
+    public function getSchemaFieldDeprecationDescription(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): ?string
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $placeholder_status = $translationAPI->__('Use \'is-status(status:%s)\' instead of \'%s\'', 'pop-posts');
@@ -139,7 +139,7 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
                 $fieldName
             ),
         ];
-        return $descriptions[$fieldName] ?? parent::getSchemaFieldDeprecationDescription($fieldResolver, $fieldName, $fieldArgs);
+        return $descriptions[$fieldName] ?? parent::getSchemaFieldDeprecationDescription($typeResolver, $fieldName, $fieldArgs);
     }
 
     protected function addSchemaDefinitionForField(array &$schemaDefinition, string $fieldName)
@@ -160,9 +160,9 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
         ];
     }
 
-    public function resolveSchemaValidationErrorDescription(FieldResolverInterface $fieldResolver, string $fieldName, array $fieldArgs = []): ?string
+    public function resolveSchemaValidationErrorDescription(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): ?string
     {
-        if ($error = parent::resolveSchemaValidationErrorDescription($fieldResolver, $fieldName, $fieldArgs)) {
+        if ($error = parent::resolveSchemaValidationErrorDescription($typeResolver, $fieldName, $fieldArgs)) {
             return $error;
         }
 
@@ -188,7 +188,7 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
         return null;
     }
 
-    public function resolveValue(FieldResolverInterface $fieldResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
+    public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
         $cmspostsresolver = \PoP\Posts\ObjectPropertyResolverFactory::getInstance();
         $cmsengineapi = \PoP\Engine\FunctionAPIFactory::getInstance();
@@ -199,33 +199,33 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
                 return $cmspostsresolver->getPostType($post);
 
             case 'title':
-                // return HooksAPIFacade::getInstance()->applyFilters('popcms:post:title', $cmspostsresolver->getPostTitle($post), $fieldResolver->getId($post));
-                return $cmspostsapi->getPostTitle($fieldResolver->getId($post));
+                // return HooksAPIFacade::getInstance()->applyFilters('popcms:post:title', $cmspostsresolver->getPostTitle($post), $typeResolver->getId($post));
+                return $cmspostsapi->getPostTitle($typeResolver->getId($post));
 
             case 'content':
-                $value = $cmspostsapi->getPostContent($fieldResolver->getId($post));
-                return HooksAPIFacade::getInstance()->applyFilters('pop_content', $value, $fieldResolver->getId($post));
+                $value = $cmspostsapi->getPostContent($typeResolver->getId($post));
+                return HooksAPIFacade::getInstance()->applyFilters('pop_content', $value, $typeResolver->getId($post));
 
             case 'url':
-                return $cmspostsapi->getPermalink($fieldResolver->getId($post));
+                return $cmspostsapi->getPermalink($typeResolver->getId($post));
 
             case 'excerpt':
-                return $cmspostsapi->getExcerpt($fieldResolver->getId($post));
+                return $cmspostsapi->getExcerpt($typeResolver->getId($post));
 
             case 'status':
-                return $cmspostsapi->getPostStatus($fieldResolver->getId($post));
+                return $cmspostsapi->getPostStatus($typeResolver->getId($post));
 
             case 'is-draft':
-                return \POP_POSTSTATUS_DRAFT == $cmspostsapi->getPostStatus($fieldResolver->getId($post));
+                return \POP_POSTSTATUS_DRAFT == $cmspostsapi->getPostStatus($typeResolver->getId($post));
 
             case 'published':
-                return \POP_POSTSTATUS_PUBLISHED == $cmspostsapi->getPostStatus($fieldResolver->getId($post));
+                return \POP_POSTSTATUS_PUBLISHED == $cmspostsapi->getPostStatus($typeResolver->getId($post));
 
             case 'not-published':
-                return !$fieldResolver->resolveValue($post, 'published', $variables, $expressions, $options);
+                return !$typeResolver->resolveValue($post, 'published', $variables, $expressions, $options);
 
             case 'is-status':
-                return $fieldArgs['status'] == $cmspostsapi->getPostStatus($fieldResolver->getId($post));
+                return $fieldArgs['status'] == $cmspostsapi->getPostStatus($typeResolver->getId($post));
 
             case 'date':
                 $format = $fieldArgs['format'] ?? $cmsengineapi->getOption(NameResolverFacade::getInstance()->getName('popcms:option:dateFormat'));
@@ -242,6 +242,6 @@ class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
                 return $cmsengineapi->getDate($format, $date);
         }
 
-        return parent::resolveValue($fieldResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
+        return parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
     }
 }

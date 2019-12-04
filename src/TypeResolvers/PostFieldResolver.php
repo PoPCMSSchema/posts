@@ -1,9 +1,9 @@
 <?php
-namespace PoP\Posts\FieldResolvers;
+namespace PoP\Posts\TypeResolvers;
 
-use PoP\ComponentModel\FieldResolvers\AbstractFieldResolver;
+use PoP\ComponentModel\TypeResolvers\AbstractTypeResolver;
 
-class PostFieldResolver extends AbstractFieldResolver
+class PostTypeResolver extends AbstractTypeResolver
 {
     public function getId($resultItem)
     {

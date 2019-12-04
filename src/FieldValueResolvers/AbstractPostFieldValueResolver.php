@@ -4,7 +4,7 @@ namespace PoP\Posts\FieldValueResolvers;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\Schema\TypeCastingHelpers;
 use PoP\Translation\Facades\TranslationAPIFacade;
-use PoP\ComponentModel\FieldResolvers\FieldResolverInterface;
+use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\FieldValueResolvers\AbstractDBDataFieldValueResolver;
 
 abstract class AbstractPostFieldValueResolver extends AbstractDBDataFieldValueResolver
@@ -16,42 +16,42 @@ abstract class AbstractPostFieldValueResolver extends AbstractDBDataFieldValueRe
         ];
     }
 
-    public function getSchemaFieldType(FieldResolverInterface $fieldResolver, string $fieldName): ?string
+    public function getSchemaFieldType(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $types = [
 			'posts' => TypeCastingHelpers::combineTypes(SchemaDefinition::TYPE_ARRAY, SchemaDefinition::TYPE_ID),
         ];
-        return $types[$fieldName] ?? parent::getSchemaFieldType($fieldResolver, $fieldName);
+        return $types[$fieldName] ?? parent::getSchemaFieldType($typeResolver, $fieldName);
     }
 
-    public function getSchemaFieldDescription(FieldResolverInterface $fieldResolver, string $fieldName): ?string
+    public function getSchemaFieldDescription(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
 			'posts' => $translationAPI->__('IDs of the posts', 'pop-posts'),
         ];
-        return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($fieldResolver, $fieldName);
+        return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
     }
 
-    public function getSchemaFieldArgs(FieldResolverInterface $fieldResolver, string $fieldName): array
+    public function getSchemaFieldArgs(TypeResolverInterface $typeResolver, string $fieldName): array
     {
         switch ($fieldName) {
             case 'posts':
-                return $this->getFieldArgumentsSchemaDefinitions($fieldResolver, $fieldName);
+                return $this->getFieldArgumentsSchemaDefinitions($typeResolver, $fieldName);
         }
-        return parent::getSchemaFieldArgs($fieldResolver, $fieldName);
+        return parent::getSchemaFieldArgs($typeResolver, $fieldName);
     }
 
-    public function enableOrderedSchemaFieldArgs(FieldResolverInterface $fieldResolver, string $fieldName): bool
+    public function enableOrderedSchemaFieldArgs(TypeResolverInterface $typeResolver, string $fieldName): bool
     {
         switch ($fieldName) {
             case 'posts':
                 return false;
         }
-        return parent::enableOrderedSchemaFieldArgs($fieldResolver, $fieldName);
+        return parent::enableOrderedSchemaFieldArgs($typeResolver, $fieldName);
     }
 
-    protected function getQuery(FieldResolverInterface $fieldResolver, $resultItem, string $fieldName, array $fieldArgs = []): array
+    protected function getQuery(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = []): array
     {
         // $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
         switch ($fieldName) {
@@ -67,29 +67,29 @@ abstract class AbstractPostFieldValueResolver extends AbstractDBDataFieldValueRe
         return [];
     }
 
-    public function resolveValue(FieldResolverInterface $fieldResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
+    public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
         $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
         switch ($fieldName) {
             case 'posts':
-                $query = $this->getQuery($fieldResolver, $resultItem, $fieldName, $fieldArgs);
+                $query = $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs);
                 $options = [
                     'return-type' => POP_RETURNTYPE_IDS,
                 ];
-                $this->addFilterDataloadQueryArgs($options, $fieldResolver, $fieldName, $fieldArgs);
+                $this->addFilterDataloadQueryArgs($options, $typeResolver, $fieldName, $fieldArgs);
                 return $cmspostsapi->getPosts($query, $options);
         }
 
-        return parent::resolveValue($fieldResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
+        return parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
     }
 
-    public function resolveFieldDefaultDataloaderClass(FieldResolverInterface $fieldResolver, string $fieldName, array $fieldArgs = []): ?string
+    public function resolveFieldDefaultDataloaderClass(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): ?string
     {
         switch ($fieldName) {
             case 'posts':
                 return \PoP\Posts\Dataloader_ConvertiblePostList::class;
         }
 
-        return parent::resolveFieldDefaultDataloaderClass($fieldResolver, $fieldName, $fieldArgs);
+        return parent::resolveFieldDefaultDataloaderClass($typeResolver, $fieldName, $fieldArgs);
     }
 }

@@ -3,11 +3,11 @@ namespace PoP\Posts\FieldValueResolvers;
 
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\Schema\SchemaDefinition;
-use PoP\ComponentModel\FieldResolvers\FieldResolverInterface;
+use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 
 class ExperimentalBranchFieldValueResolver extends PostFieldValueResolver
 {
-    public function resolveCanProcess(FieldResolverInterface $fieldResolver, string $fieldName, array $fieldArgs = []): bool
+    public function resolveCanProcess(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): bool
     {
         // Must specify fieldArg 'branch' => 'experimental'
         return isset($fieldArgs['branch']) && $fieldArgs['branch'] == 'experimental';
@@ -20,12 +20,12 @@ class ExperimentalBranchFieldValueResolver extends PostFieldValueResolver
         ];
     }
 
-    public function getSchemaFieldArgs(FieldResolverInterface $fieldResolver, string $fieldName): array
+    public function getSchemaFieldArgs(TypeResolverInterface $typeResolver, string $fieldName): array
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         switch ($fieldName) {
             case 'excerpt':
-                $ret = parent::getSchemaFieldArgs($fieldResolver, $fieldName);
+                $ret = parent::getSchemaFieldArgs($typeResolver, $fieldName);
                 $ret[] = [
                     'name' => 'branch',
                     'type' => SchemaDefinition::TYPE_STRING,
@@ -44,20 +44,20 @@ class ExperimentalBranchFieldValueResolver extends PostFieldValueResolver
                 return $ret;
         }
 
-        return parent::getSchemaFieldArgs($fieldResolver, $fieldName);
+        return parent::getSchemaFieldArgs($typeResolver, $fieldName);
     }
 
-    public function resolveValue(FieldResolverInterface $fieldResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
+    public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
         switch ($fieldName) {
             case 'excerpt':
                 // Obtain the required parameter values (or default to some basic values)
                 $length = $fieldArgs['length'] ?? 100;
                 $more = $fieldArgs['more'] ?? '';
-                $excerpt = parent::resolveValue($fieldResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
+                $excerpt = parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
                 return (strlen($excerpt) > $length) ? mb_substr($excerpt, 0, $length) . $more : $excerpt;
         }
 
-        return parent::resolveValue($fieldResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
+        return parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
     }
 }
