@@ -7,6 +7,6 @@ services:
         resource: '../src/Conditional/RESTAPI/RouteModuleProcessors/*'
         public: true
 
-    PoP\Posts\FieldValueResolvers\:
-        resource: '../src/FieldValueResolvers/*'
+    PoP\Posts\FieldResolvers\:
+        resource: '../src/FieldResolvers/*'
         public: true
