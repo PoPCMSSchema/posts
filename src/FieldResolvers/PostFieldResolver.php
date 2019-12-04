@@ -1,16 +1,16 @@
 <?php
-namespace PoP\Posts\FieldValueResolvers;
+namespace PoP\Posts\FieldResolvers;
 
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\Schema\SchemaDefinition;
-use PoP\ComponentModel\FieldValueResolvers\AbstractDBDataFieldValueResolver;
+use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\FieldQuery\FieldQueryUtils;
 
-class PostFieldValueResolver extends AbstractDBDataFieldValueResolver
+class PostFieldResolver extends AbstractDBDataFieldResolver
 {
     public static function getClassesToAttachTo(): array
     {

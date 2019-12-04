@@ -1,11 +1,11 @@
 <?php
-namespace PoP\Posts\FieldValueResolvers;
+namespace PoP\Posts\FieldResolvers;
 
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 
-class ExperimentalBranchFieldValueResolver extends PostFieldValueResolver
+class ExperimentalBranchFieldResolver extends PostFieldResolver
 {
     public function resolveCanProcess(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): bool
     {
@@ -29,7 +29,7 @@ class ExperimentalBranchFieldValueResolver extends PostFieldValueResolver
                 $ret[] = [
                     'name' => 'branch',
                     'type' => SchemaDefinition::TYPE_STRING,
-                    'description' => $translationAPI->__('The branch name, set to value \'experimental\', enabling to use this fieldValueResolver', 'pop-posts'),
+                    'description' => $translationAPI->__('The branch name, set to value \'experimental\', enabling to use this fieldResolver', 'pop-posts'),
                 ];
                 $ret[] = [
                     'name' => 'length',

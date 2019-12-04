@@ -1,13 +1,13 @@
 <?php
-namespace PoP\Posts\FieldValueResolvers;
+namespace PoP\Posts\FieldResolvers;
 
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\Schema\TypeCastingHelpers;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
-use PoP\ComponentModel\FieldValueResolvers\AbstractDBDataFieldValueResolver;
+use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
 
-abstract class AbstractPostFieldValueResolver extends AbstractDBDataFieldValueResolver
+abstract class AbstractPostFieldResolver extends AbstractDBDataFieldResolver
 {
     public static function getFieldNamesToResolve(): array
     {
