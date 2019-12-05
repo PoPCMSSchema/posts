@@ -12,7 +12,7 @@ class PostTypeResolver extends AbstractTypeResolver
         return $cmspostsresolver->getPostId($post);
     }
 
-    public function getIdFieldDataloaderClass()
+    public function getIdFieldTypeDataResolverClass()
     {
         return \PoP\Posts\Dataloader_ConvertiblePostList::class;
     }
