@@ -5,6 +5,13 @@ use PoP\ComponentModel\TypeResolvers\AbstractTypeResolver;
 
 class PostTypeResolver extends AbstractTypeResolver
 {
+    public const DATABASE_KEY = 'posts';
+
+    public function getDatabaseKey()
+    {
+        return self::DATABASE_KEY;
+    }
+
     public function getId($resultItem)
     {
         $cmspostsresolver = \PoP\Posts\ObjectPropertyResolverFactory::getInstance();
