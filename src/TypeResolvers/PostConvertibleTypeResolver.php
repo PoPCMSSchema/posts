@@ -5,11 +5,11 @@ use PoP\ComponentModel\TypeResolvers\AbstractConvertibleTypeResolver;
 
 class PostConvertibleTypeResolver extends AbstractConvertibleTypeResolver
 {
-    public function getId($resultItem)
+    public const DATABASE_KEY = 'convertible-posts';
+
+    public function getDatabaseKey(): string
     {
-        $cmspostsresolver = \PoP\Posts\ObjectPropertyResolverFactory::getInstance();
-        $post = $resultItem;
-        return $cmspostsresolver->getPostId($post);
+        return self::DATABASE_KEY;
     }
 
     public function getIdFieldTypeDataResolverClass()
