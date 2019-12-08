@@ -12,11 +12,6 @@ class PostConvertibleTypeResolver extends AbstractConvertibleTypeResolver
         return self::DATABASE_KEY_NAME;
     }
 
-    public function getIdFieldTypeDataResolverClass()
-    {
-        return PostTypeResolver::class;
-    }
-
     protected function getBaseTypeResolverClass(): string
     {
         return PostTypeResolver::class;
