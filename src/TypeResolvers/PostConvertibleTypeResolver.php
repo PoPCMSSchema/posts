@@ -5,11 +5,11 @@ use PoP\ComponentModel\TypeResolvers\AbstractConvertibleTypeResolver;
 
 class PostConvertibleTypeResolver extends AbstractConvertibleTypeResolver
 {
-    public const DATABASE_KEY = 'convertible-posts';
+    public const DATABASE_KEY_NAME = 'convertible-posts';
 
-    public function getDatabaseKey(): string
+    public function getConvertibleDatabaseKeyName(): string
     {
-        return self::DATABASE_KEY;
+        return self::DATABASE_KEY_NAME;
     }
 
     public function getIdFieldTypeDataResolverClass()
