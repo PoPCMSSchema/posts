@@ -7,7 +7,7 @@ class PostConvertibleTypeResolver extends AbstractConvertibleTypeResolver
 {
     public const DATABASE_KEY_NAME = 'convertible-posts';
 
-    public function getConvertibleDatabaseKeyName(): string
+    public function getConvertibleTypeCollectionName(): string
     {
         return self::DATABASE_KEY_NAME;
     }
