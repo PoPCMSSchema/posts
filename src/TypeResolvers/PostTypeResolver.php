@@ -5,11 +5,11 @@ use PoP\ComponentModel\TypeResolvers\AbstractTypeResolver;
 
 class PostTypeResolver extends AbstractTypeResolver
 {
-    public const DATABASE_KEY = 'posts';
+    public const TYPE_COLLECTION_NAME = 'posts';
 
-    public function getDatabaseKey(): string
+    public function getTypeCollectionName(): string
     {
-        return self::DATABASE_KEY;
+        return self::TYPE_COLLECTION_NAME;
     }
 
     public function getId($resultItem)
