@@ -6,6 +6,7 @@ use PoP\ComponentModel\Schema\TypeCastingHelpers;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
+use PoP\Posts\TypeDataResolvers\ConvertiblePostTypeDataResolver;
 
 abstract class AbstractPostFieldResolver extends AbstractDBDataFieldResolver
 {
@@ -87,7 +88,7 @@ abstract class AbstractPostFieldResolver extends AbstractDBDataFieldResolver
     {
         switch ($fieldName) {
             case 'posts':
-                return \PoP\Posts\Dataloader_ConvertiblePostList::class;
+                return ConvertiblePostTypeDataResolver::class;
         }
 
         return parent::resolveFieldDefaultTypeDataResolverClass($typeResolver, $fieldName, $fieldArgs);

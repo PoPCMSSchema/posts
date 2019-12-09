@@ -1,12 +1,12 @@
 services:
+    PoP\Posts\FieldResolvers\:
+        resource: '../src/FieldResolvers/*'
+        public: true
+
     PoP\Posts\Conditional\API\RouteModuleProcessors\:
         resource: '../src/Conditional/API/RouteModuleProcessors/*'
         public: true
 
     PoP\Posts\Conditional\RESTAPI\RouteModuleProcessors\:
         resource: '../src/Conditional/RESTAPI/RouteModuleProcessors/*'
-        public: true
-
-    PoP\Posts\FieldResolvers\:
-        resource: '../src/FieldResolvers/*'
         public: true
