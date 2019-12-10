@@ -2,7 +2,7 @@
 namespace PoP\Posts\TypeResolvers;
 
 use PoP\ComponentModel\TypeResolvers\AbstractTypeResolver;
-use PoP\Posts\TypeDataResolvers\ConvertiblePostTypeDataResolver;
+use PoP\Posts\TypeDataResolvers\PostTypeDataResolver;
 
 class PostTypeResolver extends AbstractTypeResolver
 {
@@ -22,7 +22,7 @@ class PostTypeResolver extends AbstractTypeResolver
 
     public function getIdFieldTypeDataResolverClass(): string
     {
-        return ConvertiblePostTypeDataResolver::class;
+        return PostTypeDataResolver::class;
     }
 }
 
