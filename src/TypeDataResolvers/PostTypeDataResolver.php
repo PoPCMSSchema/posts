@@ -3,7 +3,6 @@ namespace PoP\Posts\TypeDataResolvers;
 
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
-use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\ComponentModel\TypeDataResolvers\AbstractTypeQueryableDataResolver;
 
 class PostTypeDataResolver extends AbstractTypeQueryableDataResolver
@@ -11,11 +10,6 @@ class PostTypeDataResolver extends AbstractTypeQueryableDataResolver
     public function getDataquery()
     {
         return GD_DATAQUERY_POST;
-    }
-
-    public function getTypeResolverClass(): string
-    {
-        return PostTypeResolver::class;
     }
 
     public function getFilterDataloadingModule(): ?array

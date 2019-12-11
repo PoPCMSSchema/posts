@@ -2,6 +2,7 @@
 namespace PoP\Posts\TypeResolvers;
 
 use PoP\ComponentModel\TypeResolvers\AbstractConvertibleTypeResolver;
+use PoP\Posts\TypeDataResolvers\ConvertiblePostTypeDataResolver;
 
 class PostConvertibleTypeResolver extends AbstractConvertibleTypeResolver
 {
@@ -15,6 +16,11 @@ class PostConvertibleTypeResolver extends AbstractConvertibleTypeResolver
     protected function getBaseTypeResolverClass(): string
     {
         return PostTypeResolver::class;
+    }
+
+    public function getTypeDataResolverClass(): string
+    {
+        return ConvertiblePostTypeDataResolver::class;
     }
 }
 
