@@ -17,7 +17,7 @@ class PostTypeDataLoader extends AbstractTypeQueryableDataResolver
         return [\PoP_Posts_Module_Processor_FieldDataloads::class, \PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_DATAQUERY_POSTLIST_FIELDS];
     }
 
-    public function resolveObjectsFromIDs(array $ids): array
+    public function getObjects(array $ids): array
     {
         $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
         $query = array(
