@@ -6,11 +6,11 @@ use PoP\Posts\TypeDataResolvers\PostTypeDataResolver;
 
 class PostTypeResolver extends AbstractTypeResolver
 {
-    public const TYPE_COLLECTION_NAME = 'posts';
+    public const NAME = 'posts';
 
-    public function getTypeCollectionName(): string
+    public function getTypeName(): string
     {
-        return self::TYPE_COLLECTION_NAME;
+        return self::NAME;
     }
 
     public function getId($resultItem)
