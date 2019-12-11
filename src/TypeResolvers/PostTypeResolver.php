@@ -6,7 +6,7 @@ use PoP\Posts\TypeDataResolvers\PostTypeDataResolver;
 
 class PostTypeResolver extends AbstractTypeResolver
 {
-    public const NAME = 'posts';
+    public const NAME = 'Post';
 
     public function getTypeName(): string
     {
