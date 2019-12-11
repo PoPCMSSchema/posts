@@ -5,10 +5,10 @@ use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\Schema\TypeCastingHelpers;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
-use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
+use PoP\ComponentModel\FieldResolvers\AbstractQueryableFieldResolver;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 
-abstract class AbstractPostFieldResolver extends AbstractDBDataFieldResolver
+abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
 {
     public static function getFieldNamesToResolve(): array
     {
