@@ -2,7 +2,7 @@
 namespace PoP\Posts\TypeResolvers;
 
 use PoP\ComponentModel\TypeResolvers\AbstractTypeResolver;
-use PoP\Posts\TypeDataResolvers\PostTypeDataResolver;
+use PoP\Posts\TypeDataLoaders\PostTypeDataLoader;
 
 class PostTypeResolver extends AbstractTypeResolver
 {
@@ -20,9 +20,9 @@ class PostTypeResolver extends AbstractTypeResolver
         return $cmspostsresolver->getPostId($post);
     }
 
-    public function getTypeDataResolverClass(): string
+    public function getTypeDataLoaderClass(): string
     {
-        return PostTypeDataResolver::class;
+        return PostTypeDataLoader::class;
     }
 }
 

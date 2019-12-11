@@ -1,11 +1,11 @@
 <?php
-namespace PoP\Posts\TypeDataResolvers;
+namespace PoP\Posts\TypeDataLoaders;
 
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
-use PoP\ComponentModel\TypeDataResolvers\AbstractTypeQueryableDataResolver;
+use PoP\ComponentModel\TypeDataLoaders\AbstractTypeQueryableDataResolver;
 
-class PostTypeDataResolver extends AbstractTypeQueryableDataResolver
+class PostTypeDataLoader extends AbstractTypeQueryableDataResolver
 {
     public function getDataquery()
     {
@@ -71,7 +71,7 @@ class PostTypeDataResolver extends AbstractTypeQueryableDataResolver
     protected function getLimitParam($query_args)
     {
         return HooksAPIFacade::getInstance()->applyFilters(
-            'PostTypeDataResolver:query:limit',
+            'PostTypeDataLoader:query:limit',
             parent::getLimitParam($query_args)
         );
     }
@@ -79,6 +79,6 @@ class PostTypeDataResolver extends AbstractTypeQueryableDataResolver
     protected function getQueryHookName()
     {
         // Allow to add the timestamp for loadingLatest
-        return 'PostTypeDataResolver:query';
+        return 'PostTypeDataLoader:query';
     }
 }
