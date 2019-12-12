@@ -27,19 +27,19 @@ class ExperimentalBranchFieldResolver extends PostFieldResolver
             case 'excerpt':
                 $ret = parent::getSchemaFieldArgs($typeResolver, $fieldName);
                 $ret[] = [
-                    'name' => 'branch',
-                    'type' => SchemaDefinition::TYPE_STRING,
-                    'description' => $translationAPI->__('The branch name, set to value \'experimental\', enabling to use this fieldResolver', 'pop-posts'),
+                    SchemaDefinition::ARGNAME_NAME => 'branch',
+                    SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_STRING,
+                    SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The branch name, set to value \'experimental\', enabling to use this fieldResolver', 'pop-posts'),
                 ];
                 $ret[] = [
-                    'name' => 'length',
-                    'type' => SchemaDefinition::TYPE_INT,
-                    'description' => $translationAPI->__('Maximum length for the except, in number of characters', 'pop-posts'),
+                    SchemaDefinition::ARGNAME_NAME => 'length',
+                    SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_INT,
+                    SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('Maximum length for the except, in number of characters', 'pop-posts'),
                 ];
                 $ret[] = [
-                    'name' => 'more',
-                    'type' => SchemaDefinition::TYPE_STRING,
-                    'description' => $translationAPI->__('String to append at the end of the excerpt (if it is shortened by the \'length\' parameter)', 'pop-posts'),
+                    SchemaDefinition::ARGNAME_NAME => 'more',
+                    SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_STRING,
+                    SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('String to append at the end of the excerpt (if it is shortened by the \'length\' parameter)', 'pop-posts'),
                 ];
                 return $ret;
         }
