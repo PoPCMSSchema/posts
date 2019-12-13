@@ -85,10 +85,10 @@ class PostFieldResolver extends AbstractDBDataFieldResolver
                         SchemaDefinition::ARGNAME_NAME => 'format',
                         SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_STRING,
                         SchemaDefinition::ARGNAME_DESCRIPTION => sprintf(
-                            $translationAPI->__('Date format, as defined in %s. By default it is \'%s\'', 'pop-posts'),
-                            'https://www.php.net/manual/en/function.date.php',
-                            $cmsengineapi->getOption(NameResolverFacade::getInstance()->getName('popcms:option:dateFormat'))
+                            $translationAPI->__('Date format, as defined in %s', 'pop-posts'),
+                            'https://www.php.net/manual/en/function.date.php'
                         ),
+                        SchemaDefinition::ARGNAME_DEFAULT_VALUE => $cmsengineapi->getOption(NameResolverFacade::getInstance()->getName('popcms:option:dateFormat')),
                     ],
                 ];
             case 'datetime':
@@ -97,8 +97,13 @@ class PostFieldResolver extends AbstractDBDataFieldResolver
                         SchemaDefinition::ARGNAME_NAME => 'format',
                         SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_STRING,
                         SchemaDefinition::ARGNAME_DESCRIPTION => sprintf(
-                            $translationAPI->__('Date and time format, as defined in %s. By default it is \'j M, H:i\' (for current year date) or \'j M Y, H:i\' (otherwise)', 'pop-posts'),
+                            $translationAPI->__('Date and time format, as defined in %s', 'pop-posts'),
                             'https://www.php.net/manual/en/function.date.php'
+                        ),
+                        SchemaDefinition::ARGNAME_DEFAULT_VALUE => sprintf(
+                            $translationAPI->__('\'%s\' (for current year date) or \'%s\' (otherwise)', 'pop-posts'),
+                            'j M, H:i',
+                            'j M Y, H:i'
                         ),
                     ],
                 ];
