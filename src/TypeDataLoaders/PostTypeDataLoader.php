@@ -3,9 +3,9 @@ namespace PoP\Posts\TypeDataLoaders;
 
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
-use PoP\ComponentModel\TypeDataLoaders\AbstractTypeQueryableDataResolver;
+use PoP\ComponentModel\TypeDataLoaders\AbstractTypeQueryableDataLoader;
 
-class PostTypeDataLoader extends AbstractTypeQueryableDataResolver
+class PostTypeDataLoader extends AbstractTypeQueryableDataLoader
 {
     public function getDataquery()
     {
