@@ -2,15 +2,22 @@
 namespace PoP\Posts\TypeResolvers;
 
 use PoP\Posts\TypeDataLoaders\PostTypeDataLoader;
+use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\AbstractConvertibleTypeResolver;
 
 class PostConvertibleTypeResolver extends AbstractConvertibleTypeResolver
 {
-    public const DATABASE_KEY_NAME = 'convertible-posts';
+    public const NAME = 'ConvertiblePost';
 
     public function getConvertibleTypeCollectionName(): string
     {
-        return self::DATABASE_KEY_NAME;
+        return self::NAME;
+    }
+
+    public function getSchemaTypeDescription(): ?string
+    {
+        $translationAPI = TranslationAPIFacade::getInstance();
+        return $translationAPI->__('Union of \'post\' type resolvers', 'posts');
     }
 
     public function getTypeDataLoaderClass(): string
