@@ -13,11 +13,6 @@ class PostConvertibleTypeResolver extends AbstractConvertibleTypeResolver
         return self::DATABASE_KEY_NAME;
     }
 
-    // protected function getBaseTypeResolverClass(): string
-    // {
-    //     return PostTypeResolver::class;
-    // }
-
     public function getTypeDataLoaderClass(): string
     {
         return PostTypeDataLoader::class;
