@@ -1,8 +1,8 @@
 <?php
 namespace PoP\Posts\TypeResolvers;
 
+use PoP\Posts\TypeDataLoaders\PostTypeDataLoader;
 use PoP\ComponentModel\TypeResolvers\AbstractConvertibleTypeResolver;
-use PoP\Posts\TypeDataLoaders\ConvertiblePostTypeDataLoader;
 
 class PostConvertibleTypeResolver extends AbstractConvertibleTypeResolver
 {
@@ -13,14 +13,14 @@ class PostConvertibleTypeResolver extends AbstractConvertibleTypeResolver
         return self::DATABASE_KEY_NAME;
     }
 
-    protected function getBaseTypeResolverClass(): string
-    {
-        return PostTypeResolver::class;
-    }
+    // protected function getBaseTypeResolverClass(): string
+    // {
+    //     return PostTypeResolver::class;
+    // }
 
     public function getTypeDataLoaderClass(): string
     {
-        return ConvertiblePostTypeDataLoader::class;
+        return PostTypeDataLoader::class;
     }
 }
 
