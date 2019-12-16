@@ -3,6 +3,10 @@ services:
         resource: '../src/FieldResolvers/*'
         public: true
 
+    PoP\Posts\TypeResolverPickers\:
+        resource: '../src/TypeResolverPickers/*'
+        public: true
+
     PoP\Posts\Conditional\API\RouteModuleProcessors\:
         resource: '../src/Conditional/API/RouteModuleProcessors/*'
         public: true
