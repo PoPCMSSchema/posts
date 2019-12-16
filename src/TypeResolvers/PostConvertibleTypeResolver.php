@@ -9,7 +9,7 @@ class PostConvertibleTypeResolver extends AbstractConvertibleTypeResolver
 {
     public const NAME = 'ConvertiblePost';
 
-    public function getConvertibleTypeCollectionName(): string
+    public function getTypeName(): string
     {
         return self::NAME;
     }
