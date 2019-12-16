@@ -14,11 +14,6 @@ class PostTypeResolverPicker extends AbstractTypeResolverPicker
         ];
     }
 
-    public function getSchemaDefinitionObjectNature(): string
-    {
-        return 'is-post';
-    }
-
     public function getTypeResolverClass(): string
     {
         return PostTypeResolver::class;
