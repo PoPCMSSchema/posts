@@ -3,11 +3,11 @@ namespace PoP\Posts\TypeResolvers;
 
 use PoP\Posts\TypeDataLoaders\PostTypeDataLoader;
 use PoP\Translation\Facades\TranslationAPIFacade;
-use PoP\ComponentModel\TypeResolvers\AbstractConvertibleTypeResolver;
+use PoP\ComponentModel\TypeResolvers\AbstractUnionTypeResolver;
 
-class PostConvertibleTypeResolver extends AbstractConvertibleTypeResolver
+class PostUnionTypeResolver extends AbstractUnionTypeResolver
 {
-    public const NAME = 'ConvertiblePost';
+    public const NAME = 'UnionPost';
 
     public function getTypeName(): string
     {
