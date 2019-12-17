@@ -2,6 +2,7 @@
 namespace PoP\Posts\TypeResolverPickers;
 
 use PoP\ComponentModel\TypeResolverPickers\AbstractTypeResolverPicker;
+use PoP\Posts\Facades\PostTypeAPIFacade;
 use PoP\Posts\TypeResolvers\PostUnionTypeResolver;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 
@@ -21,9 +22,7 @@ class PostTypeResolverPicker extends AbstractTypeResolverPicker
 
     public function process($resultItemOrID): bool
     {
-        $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
-        $cmspostsresolver = \PoP\Posts\ObjectPropertyResolverFactory::getInstance();
-        $postID = is_object($resultItemOrID) ? $cmspostsresolver->getPostId($resultItemOrID) : $resultItemOrID;
-        return $cmspostsapi->getPostType($postID) == 'post';
+        $postTypeAPI = PostTypeAPIFacade::getInstance();
+        return $postTypeAPI->isInstanceOfPostType($resultItemOrID);
     }
 }
