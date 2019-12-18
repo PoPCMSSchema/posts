@@ -41,11 +41,8 @@ class PostUnionTypeResolver extends AbstractUnionTypeResolver
         $postUnionTypeDataLoader = $instanceManager->getInstance($this->getTypeDataLoaderClass());
         if ($posts = $postUnionTypeDataLoader->getObjects($ids)) {
             foreach ($posts as $post) {
-                $typeResolverAndPicker = $this->getTypeResolverAndPicker($post);
-                if (!is_null($typeResolverAndPicker)) {
-                    list(
-                        $targetTypeResolver,
-                    ) = $typeResolverAndPicker;
+                $targetTypeResolver = $this->getTargetTypeResolver($post);
+                if (!is_null($targetTypeResolver)) {
                     $resultItemIDTargetTypeResolvers[$targetTypeResolver->getId($post)] = $targetTypeResolver;
                 }
             }

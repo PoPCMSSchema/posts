@@ -39,19 +39,13 @@ class PostUnionTypeDataLoader extends PostTypeDataLoader
         $postUnionTypeResolver = $instanceManager->getInstance(PostUnionTypeResolver::class);
         $posts = array_map(
             function($post) use($postUnionTypeResolver) {
-                $typeResolverAndPicker = $postUnionTypeResolver->getTypeResolverAndPicker($post);
-                if (is_null($typeResolverAndPicker)) {
+                $targetTypeResolverPicker = $postUnionTypeResolver->getTargetTypeResolverPicker($post);
+                if (is_null($targetTypeResolverPicker)) {
                     return $post;
                 }
-
-                list(
-                    $typeResolver,
-                    $typeResolverPicker
-                ) = $typeResolverAndPicker;
-
-                if ($typeResolverPicker instanceof CastableTypeResolverPickerInterface) {
-                    // Cast object, eg from post to event
-                    return $typeResolverPicker->cast($post);
+                if ($targetTypeResolverPicker instanceof CastableTypeResolverPickerInterface) {
+                    // Cast object, eg: from post to event
+                    return $targetTypeResolverPicker->cast($post);
                 }
                 return $post;
             },
