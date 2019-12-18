@@ -7,7 +7,7 @@ use PoP\ComponentModel\TypeResolvers\AbstractUnionTypeResolver;
 
 class PostUnionTypeResolver extends AbstractUnionTypeResolver
 {
-    public const NAME = 'UnionPost';
+    public const NAME = 'PostUnion';
 
     public function getTypeName(): string
     {
