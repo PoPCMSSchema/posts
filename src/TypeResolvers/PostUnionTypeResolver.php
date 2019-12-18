@@ -26,6 +26,14 @@ class PostUnionTypeResolver extends AbstractUnionTypeResolver
         return PostUnionTypeDataLoader::class;
     }
 
+    /**
+     * Overriding function to provide optimization:
+     * instead of calling ->isIDOfType on each object (as in parent function), in which case we must make a DB call for each result,
+     * we obtain all the types from executing a single query against the DB
+     *
+     * @param array $ids
+     * @return array
+     */
     protected function getResultItemIDTargetTypeResolvers(array $ids): array
     {
         $resultItemIDTargetTypeResolvers = [];
