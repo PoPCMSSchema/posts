@@ -4,6 +4,7 @@ namespace PoP\Posts\TypeDataLoaders;
 use PoP\Posts\TypeDataLoaders\PostTypeDataLoader;
 use PoP\Posts\TypeResolvers\PostUnionTypeResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
+use PoP\ComponentModel\TypeResolverPickers\CastableTypeResolverPickerInterface;
 
 class PostUnionTypeDataLoader extends PostTypeDataLoader
 {
@@ -48,8 +49,11 @@ class PostUnionTypeDataLoader extends PostTypeDataLoader
                     $typeResolverPicker
                 ) = $typeResolverAndPicker;
 
-                // Cast object, eg from post to event
-                return $typeResolverPicker->cast($post);
+                if ($typeResolverPicker instanceof CastableTypeResolverPickerInterface) {
+                    // Cast object, eg from post to event
+                    return $typeResolverPicker->cast($post);
+                }
+                return $post;
             },
             $posts
         );
