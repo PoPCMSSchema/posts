@@ -1,8 +1,8 @@
 <?php
 namespace PoP\Posts\TypeResolvers;
 
-use PoP\Posts\TypeDataLoaders\PostTypeDataLoader;
 use PoP\Translation\Facades\TranslationAPIFacade;
+use PoP\Posts\TypeDataLoaders\PostUnionTypeDataLoader;
 use PoP\ComponentModel\TypeResolvers\AbstractUnionTypeResolver;
 
 class PostUnionTypeResolver extends AbstractUnionTypeResolver
@@ -22,7 +22,7 @@ class PostUnionTypeResolver extends AbstractUnionTypeResolver
 
     public function getTypeDataLoaderClass(): string
     {
-        return PostTypeDataLoader::class;
+        return PostUnionTypeDataLoader::class;
     }
 }
 

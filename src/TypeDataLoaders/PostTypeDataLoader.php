@@ -17,13 +17,17 @@ class PostTypeDataLoader extends AbstractTypeQueryableDataLoader
         return [\PoP_Posts_Module_Processor_FieldDataloads::class, \PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_DATAQUERY_POSTLIST_FIELDS];
     }
 
+    public function getObjectQuery(array $ids): array
+    {
+        return array(
+            'include' => $ids,
+        );
+    }
+
     public function getObjects(array $ids): array
     {
         $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
-        $query = array(
-            'include' => $ids,
-            'post-types' => array_keys($cmspostsapi->getPostTypes()) // From all post types
-        );
+        $query = $this->getObjectQuery($ids);
         return $cmspostsapi->getPosts($query);
     }
 
@@ -36,10 +40,6 @@ class PostTypeDataLoader extends AbstractTypeQueryableDataLoader
             POP_POSTSTATUS_DRAFT,
             POP_POSTSTATUS_PENDING,
         ]; // Status can also be 'pending', so don't limit it here, just select by ID
-
-        // Allow absolutely any post type, including events and highlights
-        $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
-        $query['post-types'] = array_keys($cmspostsapi->getPostTypes());
 
         return $query;
     }
