@@ -13,4 +13,18 @@ interface PostTypeAPIInterface
      * @return boolean
      */
     public function isInstanceOfPostType($object): bool;
+    /**
+     * Get the post with provided ID or, if it doesn't exist, null
+     *
+     * @param [type] $id
+     * @return void
+     */
+    public function getPost($id);
+    /**
+     * Indicate if an post with provided ID exists
+     *
+     * @param [type] $id
+     * @return void
+     */
+    public function postExists($id): bool;
 }
