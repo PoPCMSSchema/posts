@@ -1,6 +1,7 @@
 <?php
 namespace PoP\Posts\FieldResolvers;
 
+use PoP\FieldQuery\FieldQueryUtils;
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\LooseContracts\Facades\NameResolverFacade;
@@ -25,6 +26,34 @@ class PostFieldResolver extends AbstractDBDataFieldResolver
         return [
             PublishableArticleFieldInterfaceResolver::class,
         ];
+    }
+
+    public function resolveSchemaValidationErrorDescription(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): ?string
+    {
+        if ($error = parent::resolveSchemaValidationErrorDescription($typeResolver, $fieldName, $fieldArgs)) {
+            return $error;
+        }
+
+        // Important: The validations below can only be done if no fieldArg contains a field!
+        // That is because this is a schema error, so we still don't have the $resultItem against which to resolve the field
+        // For instance, this doesn't work: /?query=arrayItem(posts(),3)
+        // In that case, the validation will be done inside ->resolveValue(), and will be treated as a $dbError, not a $schemaError
+        if (!FieldQueryUtils::isAnyFieldArgumentValueAField($fieldArgs)) {
+            $translationAPI = TranslationAPIFacade::getInstance();
+            switch ($fieldName) {
+                case 'is-status':
+                    $status = $fieldArgs['status'];
+                    if (!in_array($status, PublishableArticleFieldInterfaceResolver::POST_STATUSES)) {
+                        return sprintf(
+                            $translationAPI->__('Argument \'status\' can only have these values: \'%s\'', 'pop-posts'),
+                            implode($translationAPI->__('\', \''), PublishableArticleFieldInterfaceResolver::POST_STATUSES)
+                        );
+                    }
+                    break;
+            }
+        }
+
+        return null;
     }
 
     public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])

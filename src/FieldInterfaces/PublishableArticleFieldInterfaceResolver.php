@@ -1,7 +1,6 @@
 <?php
 namespace PoP\Posts\FieldInterfaces;
 
-use PoP\FieldQuery\FieldQueryUtils;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
@@ -11,6 +10,12 @@ use PoP\ComponentModel\FieldResolvers\AbstractSchemaFieldInterfaceResolver;
 class PublishableArticleFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResolver
 {
     public const NAME = 'PublishableArticle';
+    public const POST_STATUSES = [
+        \POP_POSTSTATUS_PUBLISHED,
+        \POP_POSTSTATUS_PENDING,
+        \POP_POSTSTATUS_DRAFT,
+        \POP_POSTSTATUS_TRASH,
+    ];
     public function getInterfaceName(): string
     {
         return self::NAME;
@@ -112,7 +117,7 @@ class PublishableArticleFieldInterfaceResolver extends AbstractSchemaFieldInterf
                         SchemaDefinition::ARGNAME_NAME => 'status',
                         SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_ENUM,
                         SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The status to check if the post has', 'pop-posts'),
-                        SchemaDefinition::ARGNAME_ENUMVALUES => $this->getPostStatuses(),
+                        SchemaDefinition::ARGNAME_ENUMVALUES => self::POST_STATUSES,
                         SchemaDefinition::ARGNAME_MANDATORY => true,
                     ],
                 ];
@@ -150,45 +155,8 @@ class PublishableArticleFieldInterfaceResolver extends AbstractSchemaFieldInterf
     {
         switch ($fieldName) {
             case 'status':
-                $schemaDefinition[SchemaDefinition::ARGNAME_ENUMVALUES] = $this->getPostStatuses();
+                $schemaDefinition[SchemaDefinition::ARGNAME_ENUMVALUES] = self::POST_STATUSES;
                 break;
         }
-    }
-
-    protected function getPostStatuses() {
-        return [
-            \POP_POSTSTATUS_PUBLISHED,
-            \POP_POSTSTATUS_PENDING,
-            \POP_POSTSTATUS_DRAFT,
-            \POP_POSTSTATUS_TRASH,
-        ];
-    }
-
-    public function resolveSchemaValidationErrorDescription(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): ?string
-    {
-        if ($error = parent::resolveSchemaValidationErrorDescription($typeResolver, $fieldName, $fieldArgs)) {
-            return $error;
-        }
-
-        // Important: The validations below can only be done if no fieldArg contains a field!
-        // That is because this is a schema error, so we still don't have the $resultItem against which to resolve the field
-        // For instance, this doesn't work: /?query=arrayItem(posts(),3)
-        // In that case, the validation will be done inside ->resolveValue(), and will be treated as a $dbError, not a $schemaError
-        if (!FieldQueryUtils::isAnyFieldArgumentValueAField($fieldArgs)) {
-            $translationAPI = TranslationAPIFacade::getInstance();
-            switch ($fieldName) {
-                case 'is-status':
-                    $status = $fieldArgs['status'];
-                    if (!in_array($status, $this->getPostStatuses())) {
-                        return sprintf(
-                            $translationAPI->__('Argument \'status\' can only have these values: \'%s\'', 'pop-posts'),
-                            implode($translationAPI->__('\', \''), $this->getPostStatuses())
-                        );
-                    }
-                    break;
-            }
-        }
-
-        return null;
     }
 }
