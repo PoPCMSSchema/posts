@@ -137,7 +137,7 @@ class PublishableFieldInterfaceResolver extends AbstractSchemaFieldInterfaceReso
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDeprecationDescription($typeResolver, $fieldName, $fieldArgs);
     }
 
-    protected function addSchemaDefinitionForField(array &$schemaDefinition, string $fieldName)
+    public function addSchemaDefinitionForField(array &$schemaDefinition, TypeResolverInterface $typeResolver, string $fieldName): void
     {
         switch ($fieldName) {
             case 'status':
