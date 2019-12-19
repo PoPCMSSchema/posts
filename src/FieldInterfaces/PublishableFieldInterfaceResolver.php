@@ -7,9 +7,9 @@ use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\FieldResolvers\AbstractSchemaFieldInterfaceResolver;
 
-class PublishableArticleFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResolver
+class PublishableFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResolver
 {
-    public const NAME = 'PublishableArticle';
+    public const NAME = 'Publishable';
     public const POST_STATUSES = [
         \POP_POSTSTATUS_PUBLISHED,
         \POP_POSTSTATUS_PENDING,
@@ -24,13 +24,8 @@ class PublishableArticleFieldInterfaceResolver extends AbstractSchemaFieldInterf
     public static function getFieldNamesToImplement(): array
     {
         return [
-            'post-type',
             'published',
             'not-published',
-            'title',
-            'content',
-            'url',
-            'excerpt',
             'status',
             'is-draft',
             'is-status',
@@ -42,13 +37,8 @@ class PublishableArticleFieldInterfaceResolver extends AbstractSchemaFieldInterf
     public function getSchemaFieldType(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $types = [
-            'post-type' => SchemaDefinition::TYPE_STRING,
             'published' => SchemaDefinition::TYPE_BOOL,
             'not-published' => SchemaDefinition::TYPE_BOOL,
-            'title' => SchemaDefinition::TYPE_STRING,
-            'content' => SchemaDefinition::TYPE_STRING,
-            'url' => SchemaDefinition::TYPE_URL,
-            'excerpt' => SchemaDefinition::TYPE_STRING,
             'status' => SchemaDefinition::TYPE_ENUM,
             'is-draft' => SchemaDefinition::TYPE_BOOL,
             'is-status' => SchemaDefinition::TYPE_BOOL,
@@ -65,10 +55,6 @@ class PublishableArticleFieldInterfaceResolver extends AbstractSchemaFieldInterf
             'post-type' => $translationAPI->__('Post type', 'pop-posts'),
             'published' => $translationAPI->__('Has the post been published?', 'pop-posts'),
             'not-published' => $translationAPI->__('Has the post not been published?', 'pop-posts'),
-            'title' => $translationAPI->__('Post title', 'pop-posts'),
-            'content' => $translationAPI->__('Post content', 'pop-posts'),
-            'url' => $translationAPI->__('Post URL', 'pop-posts'),
-            'excerpt' => $translationAPI->__('Post excerpt', 'pop-posts'),
             'status' => $translationAPI->__('Post status', 'pop-posts'),
             'is-draft' => $translationAPI->__('Is the post in \'draft\' status?', 'pop-posts'),
             'is-status' => $translationAPI->__('Is the post in the given status?', 'pop-posts'),

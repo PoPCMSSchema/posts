@@ -7,7 +7,9 @@ use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
-use PoP\Posts\FieldInterfaces\PublishableArticleFieldInterfaceResolver;
+use PoP\Posts\FieldInterfaces\ContentFieldInterfaceResolver;
+use PoP\Posts\FieldInterfaces\LinkableFieldInterfaceResolver;
+use PoP\Posts\FieldInterfaces\PublishableFieldInterfaceResolver;
 
 class PostFieldResolver extends AbstractDBDataFieldResolver
 {
@@ -24,7 +26,9 @@ class PostFieldResolver extends AbstractDBDataFieldResolver
     public static function getImplementedInterfaceClasses(): array
     {
         return [
-            PublishableArticleFieldInterfaceResolver::class,
+            ContentFieldInterfaceResolver::class,
+            LinkableFieldInterfaceResolver::class,
+            PublishableFieldInterfaceResolver::class,
         ];
     }
 
@@ -43,10 +47,10 @@ class PostFieldResolver extends AbstractDBDataFieldResolver
             switch ($fieldName) {
                 case 'is-status':
                     $status = $fieldArgs['status'];
-                    if (!in_array($status, PublishableArticleFieldInterfaceResolver::POST_STATUSES)) {
+                    if (!in_array($status, PublishableFieldInterfaceResolver::POST_STATUSES)) {
                         return sprintf(
                             $translationAPI->__('Argument \'status\' can only have these values: \'%s\'', 'pop-posts'),
-                            implode($translationAPI->__('\', \''), PublishableArticleFieldInterfaceResolver::POST_STATUSES)
+                            implode($translationAPI->__('\', \''), PublishableFieldInterfaceResolver::POST_STATUSES)
                         );
                     }
                     break;
