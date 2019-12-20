@@ -1,11 +1,12 @@
 <?php
 namespace PoP\Posts\FieldResolvers;
 
-use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\Schema\SchemaDefinition;
+use PoP\Translation\Facades\TranslationAPIFacade;
+use PoP\Posts\FieldResolvers\PostContentFieldResolver;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 
-class ExperimentalBranchFieldResolver extends PostFieldResolver
+class ExperimentalBranchFieldResolver extends PostContentFieldResolver
 {
     public function resolveCanProcess(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): bool
     {
