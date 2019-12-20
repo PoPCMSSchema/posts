@@ -1,10 +1,8 @@
 <?php
 namespace PoP\Posts\FieldResolvers;
 
-use PoP\FieldQuery\FieldQueryUtils;
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
-use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\Content\FieldInterfaces\ContentFieldInterfaceResolver;
