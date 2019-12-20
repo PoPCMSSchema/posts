@@ -11,6 +11,7 @@ use PoP\Content\FieldInterfaces\ContentFieldInterfaceResolver;
 use PoP\Content\FieldInterfaces\LinkableFieldInterfaceResolver;
 use PoP\Content\FieldInterfaces\PublishableFieldInterfaceResolver;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
+use PoP\Posts\Facades\PostTypeAPIFacade;
 
 class PostFieldResolver extends AbstractDBDataFieldResolver
 {
@@ -37,7 +38,7 @@ class PostFieldResolver extends AbstractDBDataFieldResolver
     {
         $cmspostsresolver = \PoP\Posts\ObjectPropertyResolverFactory::getInstance();
         $cmsengineapi = \PoP\Engine\FunctionAPIFactory::getInstance();
-        $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
+        $cmspostsapi = PostTypeAPIFacade::getInstance();
         $post = $resultItem;
         switch ($fieldName) {
             case 'post-type':

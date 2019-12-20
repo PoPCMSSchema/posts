@@ -4,6 +4,7 @@ namespace PoP\Posts\TypeDataLoaders;
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\TypeDataLoaders\AbstractTypeQueryableDataLoader;
+use PoP\Posts\Facades\PostTypeAPIFacade;
 
 class PostTypeDataLoader extends AbstractTypeQueryableDataLoader
 {
@@ -26,7 +27,7 @@ class PostTypeDataLoader extends AbstractTypeQueryableDataLoader
 
     public function getObjects(array $ids): array
     {
-        $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
+        $cmspostsapi = PostTypeAPIFacade::getInstance();
         $query = $this->getObjectQuery($ids);
         return $cmspostsapi->getPosts($query);
     }
@@ -46,7 +47,7 @@ class PostTypeDataLoader extends AbstractTypeQueryableDataLoader
 
     public function executeQuery($query, array $options = [])
     {
-        $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
+        $cmspostsapi = PostTypeAPIFacade::getInstance();
         return $cmspostsapi->getPosts($query, $options);
     }
 

@@ -27,4 +27,21 @@ interface PostTypeAPIInterface
      * @return void
      */
     public function postExists($id): bool;
+
+    // Posts
+    public function getPostStatus($post_id);
+    public function getPosts($query, array $options = []);
+    public function getPostTypes($query = array()): array;
+    public function getPostType($post);
+    public function getPermalink($post_id);
+    public function getExcerpt($post_id);
+    public function getTitle($post_id);
+    // public function getSinglePostTitle($post);
+    public function getPostSlug($post_id);
+    public function getPostTitle($post_id);
+    public function getPostContent($post_id);
+    public function getBasicPostContent($post_id);
+    public function getPostCount($query);
+    public function getExcerptMore();
+    public function getExcerptLength();
 }

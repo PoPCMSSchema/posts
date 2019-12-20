@@ -5,6 +5,7 @@ use PoP\Posts\TypeDataLoaders\PostTypeDataLoader;
 use PoP\Posts\TypeResolvers\PostUnionTypeResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\TypeResolverPickers\CastableTypeResolverPickerInterface;
+use PoP\Posts\Facades\PostTypeAPIFacade;
 
 class PostUnionTypeDataLoader extends PostTypeDataLoader
 {
@@ -12,7 +13,7 @@ class PostUnionTypeDataLoader extends PostTypeDataLoader
     {
         $query = parent::getObjectQuery($ids);
         // From all post types
-        $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
+        $cmspostsapi = PostTypeAPIFacade::getInstance();
         $query['post-types'] = array_keys($cmspostsapi->getPostTypes());
 
         return $query;
@@ -23,7 +24,7 @@ class PostUnionTypeDataLoader extends PostTypeDataLoader
         $query = parent::getDataFromIdsQuery($ids);
 
         // Allow absolutely any post type, including events and highlights
-        $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
+        $cmspostsapi = PostTypeAPIFacade::getInstance();
         $query['post-types'] = array_keys($cmspostsapi->getPostTypes());
 
         return $query;
