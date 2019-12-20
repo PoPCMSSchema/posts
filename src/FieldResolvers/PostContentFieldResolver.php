@@ -11,7 +11,7 @@ use PoP\Content\FieldInterfaces\PublishableFieldInterfaceResolver;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
 use PoP\Posts\Facades\PostTypeAPIFacade;
 
-class PostFieldResolver extends AbstractDBDataFieldResolver
+class PostContentFieldResolver extends AbstractDBDataFieldResolver
 {
     public static function getClassesToAttachTo(): array
     {
