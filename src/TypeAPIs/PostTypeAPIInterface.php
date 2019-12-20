@@ -1,10 +1,12 @@
 <?php
 namespace PoP\Posts\TypeAPIs;
 
+use PoP\Content\TypeAPIs\ContentEntityTypeAPIInterface;
+
 /**
  * Methods to interact with the Type, to be implemented by the underlying CMS
  */
-interface PostTypeAPIInterface
+interface PostTypeAPIInterface extends ContentEntityTypeAPIInterface
 {
     /**
      * Return the post's ID
@@ -35,22 +37,21 @@ interface PostTypeAPIInterface
      */
     public function postExists($id): bool;
 
-    // Posts
-    public function getStatus($postObjectOrID): ?string;
+    // public function getTitle($id): ?string;
+    // public function getContent($id): ?string;
+    // public function getPermalink($postObjectOrID): ?string;
+    // public function getExcerpt($postObjectOrID): ?string;
+    // public function getStatus($postObjectOrID): ?string;
+    // public function getPublishedDate($postObjectOrID): ?string;
+    // public function getModifiedDate($postObjectOrID): ?string;
+    public function getAuthorID($postObjectOrID);
+
     public function getPosts($query, array $options = []);
     public function getPostTypes($query = array()): array;
     public function getPostType($post);
-    public function getPermalink($postObjectOrID): ?string;
-    public function getExcerpt($postObjectOrID): ?string;
-    public function getTitle($postObjectOrID): ?string;
-    // public function getSinglePostTitle($post);
     public function getSlug($postObjectOrID): ?string;
-    public function getContent($postObjectOrID): ?string;
     public function getBasicPostContent($post_id);
     public function getPostCount($query);
     public function getExcerptMore();
     public function getExcerptLength();
-    public function getPublishedDate($postObjectOrID): ?string;
-    public function getAuthorID($postObjectOrID);
-    public function getModifiedDate($postObjectOrID): ?string;
 }
