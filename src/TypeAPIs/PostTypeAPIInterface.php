@@ -43,4 +43,5 @@ interface PostTypeAPIInterface
     public function getPostCount($query);
     public function getExcerptMore();
     public function getExcerptLength();
+    public function getPublishedDate($postObjectOrID): ?string;
 }

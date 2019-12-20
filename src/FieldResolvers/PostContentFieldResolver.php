@@ -63,12 +63,12 @@ class PostContentFieldResolver extends AbstractDBDataFieldResolver
 
             case 'date':
                 $format = $fieldArgs['format'] ?? $cmsengineapi->getOption(NameResolverFacade::getInstance()->getName('popcms:option:dateFormat'));
-                return $cmsengineapi->getDate($format, $cmspostsresolver->getPostDate($post));
+                return $cmsengineapi->getDate($format, $postTypeAPI->getPublishedDate($post));
 
             case 'datetime':
                 // If it is the current year, don't add the year. Otherwise, do
                 // 15 Jul, 21:47 or // 15 Jul 2018, 21:47
-                $date = $cmspostsresolver->getPostDate($post);
+                $date = $postTypeAPI->getPublishedDate($post);
                 $format = $fieldArgs['format'];
                 if (!$format) {
                     $format = ($cmsengineapi->getDate('Y', $date) == date('Y')) ? 'j M, H:i' : 'j M Y, H:i';
