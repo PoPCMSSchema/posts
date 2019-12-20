@@ -59,15 +59,6 @@ class PostContentFieldResolver extends AbstractDBDataFieldResolver
             case 'status':
                 return $postTypeAPI->getPostStatus($typeResolver->getId($post));
 
-            case 'is-draft':
-                return \POP_POSTSTATUS_DRAFT == $postTypeAPI->getPostStatus($typeResolver->getId($post));
-
-            case 'published':
-                return \POP_POSTSTATUS_PUBLISHED == $postTypeAPI->getPostStatus($typeResolver->getId($post));
-
-            case 'not-published':
-                return !$typeResolver->resolveValue($post, 'published', $variables, $expressions, $options);
-
             case 'is-status':
                 return $fieldArgs['status'] == $postTypeAPI->getPostStatus($typeResolver->getId($post));
 
