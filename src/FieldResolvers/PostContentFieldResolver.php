@@ -53,7 +53,7 @@ class PostContentFieldResolver extends AbstractDBDataFieldResolver
                 return $postTypeAPI->getPermalink($post);
 
             case 'excerpt':
-                return $postTypeAPI->getExcerpt($typeResolver->getId($post));
+                return $postTypeAPI->getExcerpt($post);
 
             case 'status':
                 return $postTypeAPI->getStatus($post);
