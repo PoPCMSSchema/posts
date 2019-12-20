@@ -45,4 +45,5 @@ interface PostTypeAPIInterface
     public function getExcerptLength();
     public function getPublishedDate($postObjectOrID): ?string;
     public function getAuthorID($postObjectOrID);
+    public function getModifiedDate($postObjectOrID): ?string;
 }
