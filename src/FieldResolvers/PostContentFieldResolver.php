@@ -43,8 +43,7 @@ class PostContentFieldResolver extends AbstractDBDataFieldResolver
                 return $cmspostsresolver->getPostType($post);
 
             case 'title':
-                // return HooksAPIFacade::getInstance()->applyFilters('popcms:post:title', $cmspostsresolver->getPostTitle($post), $typeResolver->getId($post));
-                return $postTypeAPI->getPostTitle($typeResolver->getId($post));
+                return $postTypeAPI->getTitle($post);
 
             case 'content':
                 $value = $postTypeAPI->getPostContent($typeResolver->getId($post));

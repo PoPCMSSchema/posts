@@ -35,10 +35,9 @@ interface PostTypeAPIInterface
     public function getPostType($post);
     public function getPermalink($post_id): ?string;
     public function getExcerpt($post_id): ?string;
-    public function getTitle($post_id): ?string;
+    public function getTitle($postObjectOrID): ?string;
     // public function getSinglePostTitle($post);
     public function getSlug($postObjectOrID): ?string;
-    public function getPostTitle($post_id): ?string;
     public function getPostContent($post_id): ?string;
     public function getBasicPostContent($post_id);
     public function getPostCount($query);
