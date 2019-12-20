@@ -33,7 +33,7 @@ interface PostTypeAPIInterface
     public function getPosts($query, array $options = []);
     public function getPostTypes($query = array()): array;
     public function getPostType($post);
-    public function getPermalink($post_id): ?string;
+    public function getPermalink($postObjectOrID): ?string;
     public function getExcerpt($post_id): ?string;
     public function getTitle($postObjectOrID): ?string;
     // public function getSinglePostTitle($post);
