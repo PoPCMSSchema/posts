@@ -38,7 +38,7 @@ class PostFieldResolver extends AbstractDBDataFieldResolver
     {
         $cmspostsresolver = \PoP\Posts\ObjectPropertyResolverFactory::getInstance();
         $cmsengineapi = \PoP\Engine\FunctionAPIFactory::getInstance();
-        $cmspostsapi = PostTypeAPIFacade::getInstance();
+        $postTypeAPI = PostTypeAPIFacade::getInstance();
         $post = $resultItem;
         switch ($fieldName) {
             case 'post-type':
@@ -46,32 +46,32 @@ class PostFieldResolver extends AbstractDBDataFieldResolver
 
             case 'title':
                 // return HooksAPIFacade::getInstance()->applyFilters('popcms:post:title', $cmspostsresolver->getPostTitle($post), $typeResolver->getId($post));
-                return $cmspostsapi->getPostTitle($typeResolver->getId($post));
+                return $postTypeAPI->getPostTitle($typeResolver->getId($post));
 
             case 'content':
-                $value = $cmspostsapi->getPostContent($typeResolver->getId($post));
+                $value = $postTypeAPI->getPostContent($typeResolver->getId($post));
                 return HooksAPIFacade::getInstance()->applyFilters('pop_content', $value, $typeResolver->getId($post));
 
             case 'url':
-                return $cmspostsapi->getPermalink($typeResolver->getId($post));
+                return $postTypeAPI->getPermalink($typeResolver->getId($post));
 
             case 'excerpt':
-                return $cmspostsapi->getExcerpt($typeResolver->getId($post));
+                return $postTypeAPI->getExcerpt($typeResolver->getId($post));
 
             case 'status':
-                return $cmspostsapi->getPostStatus($typeResolver->getId($post));
+                return $postTypeAPI->getPostStatus($typeResolver->getId($post));
 
             case 'is-draft':
-                return \POP_POSTSTATUS_DRAFT == $cmspostsapi->getPostStatus($typeResolver->getId($post));
+                return \POP_POSTSTATUS_DRAFT == $postTypeAPI->getPostStatus($typeResolver->getId($post));
 
             case 'published':
-                return \POP_POSTSTATUS_PUBLISHED == $cmspostsapi->getPostStatus($typeResolver->getId($post));
+                return \POP_POSTSTATUS_PUBLISHED == $postTypeAPI->getPostStatus($typeResolver->getId($post));
 
             case 'not-published':
                 return !$typeResolver->resolveValue($post, 'published', $variables, $expressions, $options);
 
             case 'is-status':
-                return $fieldArgs['status'] == $cmspostsapi->getPostStatus($typeResolver->getId($post));
+                return $fieldArgs['status'] == $postTypeAPI->getPostStatus($typeResolver->getId($post));
 
             case 'date':
                 $format = $fieldArgs['format'] ?? $cmsengineapi->getOption(NameResolverFacade::getInstance()->getName('popcms:option:dateFormat'));

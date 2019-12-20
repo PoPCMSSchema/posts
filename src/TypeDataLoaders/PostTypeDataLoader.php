@@ -27,9 +27,9 @@ class PostTypeDataLoader extends AbstractTypeQueryableDataLoader
 
     public function getObjects(array $ids): array
     {
-        $cmspostsapi = PostTypeAPIFacade::getInstance();
+        $postTypeAPI = PostTypeAPIFacade::getInstance();
         $query = $this->getObjectQuery($ids);
-        return $cmspostsapi->getPosts($query);
+        return $postTypeAPI->getPosts($query);
     }
 
     public function getDataFromIdsQuery(array $ids): array
@@ -47,8 +47,8 @@ class PostTypeDataLoader extends AbstractTypeQueryableDataLoader
 
     public function executeQuery($query, array $options = [])
     {
-        $cmspostsapi = PostTypeAPIFacade::getInstance();
-        return $cmspostsapi->getPosts($query, $options);
+        $postTypeAPI = PostTypeAPIFacade::getInstance();
+        return $postTypeAPI->getPosts($query, $options);
     }
 
     protected function getOrderbyDefault()

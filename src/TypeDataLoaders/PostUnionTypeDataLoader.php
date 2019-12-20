@@ -13,8 +13,8 @@ class PostUnionTypeDataLoader extends PostTypeDataLoader
     {
         $query = parent::getObjectQuery($ids);
         // From all post types
-        $cmspostsapi = PostTypeAPIFacade::getInstance();
-        $query['post-types'] = array_keys($cmspostsapi->getPostTypes());
+        $postTypeAPI = PostTypeAPIFacade::getInstance();
+        $query['post-types'] = array_keys($postTypeAPI->getPostTypes());
 
         return $query;
     }
@@ -24,8 +24,8 @@ class PostUnionTypeDataLoader extends PostTypeDataLoader
         $query = parent::getDataFromIdsQuery($ids);
 
         // Allow absolutely any post type, including events and highlights
-        $cmspostsapi = PostTypeAPIFacade::getInstance();
-        $query['post-types'] = array_keys($cmspostsapi->getPostTypes());
+        $postTypeAPI = PostTypeAPIFacade::getInstance();
+        $query['post-types'] = array_keys($postTypeAPI->getPostTypes());
 
         return $query;
     }
