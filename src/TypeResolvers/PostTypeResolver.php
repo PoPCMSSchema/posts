@@ -1,6 +1,7 @@
 <?php
 namespace PoP\Posts\TypeResolvers;
 
+use PoP\Posts\Facades\PostTypeAPIFacade;
 use PoP\Posts\TypeDataLoaders\PostTypeDataLoader;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\AbstractTypeResolver;
@@ -22,9 +23,8 @@ class PostTypeResolver extends AbstractTypeResolver
 
     public function getId($resultItem)
     {
-        $cmspostsresolver = \PoP\Posts\ObjectPropertyResolverFactory::getInstance();
-        $post = $resultItem;
-        return $cmspostsresolver->getPostId($post);
+        $postTypeAPI = PostTypeAPIFacade::getInstance();
+        return $postTypeAPI->getID($resultItem);
     }
 
     public function getTypeDataLoaderClass(): string
