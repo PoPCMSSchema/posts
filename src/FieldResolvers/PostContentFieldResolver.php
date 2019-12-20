@@ -57,10 +57,10 @@ class PostContentFieldResolver extends AbstractDBDataFieldResolver
                 return $postTypeAPI->getExcerpt($typeResolver->getId($post));
 
             case 'status':
-                return $postTypeAPI->getPostStatus($typeResolver->getId($post));
+                return $postTypeAPI->getStatus($post);
 
             case 'is-status':
-                return $fieldArgs['status'] == $postTypeAPI->getPostStatus($typeResolver->getId($post));
+                return $fieldArgs['status'] == $postTypeAPI->getStatus($post);
 
             case 'date':
                 $format = $fieldArgs['format'] ?? $cmsengineapi->getOption(NameResolverFacade::getInstance()->getName('popcms:option:dateFormat'));

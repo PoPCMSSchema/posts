@@ -59,7 +59,7 @@ class PostLegacyContentFieldResolver extends AbstractDBDataFieldResolver
         $post = $resultItem;
         switch ($fieldName) {
             case 'published':
-                return \POP_POSTSTATUS_PUBLISHED == $postTypeAPI->getPostStatus($typeResolver->getId($post));
+                return \POP_POSTSTATUS_PUBLISHED == $postTypeAPI->getStatus($post);
         }
 
         return parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);

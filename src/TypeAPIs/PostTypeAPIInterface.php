@@ -29,7 +29,7 @@ interface PostTypeAPIInterface
     public function postExists($id): bool;
 
     // Posts
-    public function getPostStatus($post_id): ?string;
+    public function getStatus($postObjectOrID): ?string;
     public function getPosts($query, array $options = []);
     public function getPostTypes($query = array()): array;
     public function getPostType($post);
