@@ -37,7 +37,7 @@ interface PostTypeAPIInterface
     public function getExcerpt($post_id): ?string;
     public function getTitle($post_id): ?string;
     // public function getSinglePostTitle($post);
-    public function getPostSlug($post_id);
+    public function getSlug($post_id): ?string;
     public function getPostTitle($post_id): ?string;
     public function getPostContent($post_id): ?string;
     public function getBasicPostContent($post_id);
