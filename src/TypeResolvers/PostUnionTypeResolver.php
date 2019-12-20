@@ -43,7 +43,7 @@ class PostUnionTypeResolver extends AbstractUnionTypeResolver
             foreach ($posts as $post) {
                 $targetTypeResolver = $this->getTargetTypeResolver($post);
                 if (!is_null($targetTypeResolver)) {
-                    $resultItemIDTargetTypeResolvers[$targetTypeResolver->getId($post)] = $targetTypeResolver;
+                    $resultItemIDTargetTypeResolvers[$targetTypeResolver->getID($post)] = $targetTypeResolver;
                 }
             }
         }

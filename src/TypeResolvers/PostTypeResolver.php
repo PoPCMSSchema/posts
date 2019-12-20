@@ -21,7 +21,7 @@ class PostTypeResolver extends AbstractTypeResolver
         return $translationAPI->__('Representation of a post', 'posts');
     }
 
-    public function getId($resultItem)
+    public function getID($resultItem)
     {
         $postTypeAPI = PostTypeAPIFacade::getInstance();
         return $postTypeAPI->getID($resultItem);

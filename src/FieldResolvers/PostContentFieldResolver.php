@@ -47,7 +47,7 @@ class PostContentFieldResolver extends AbstractDBDataFieldResolver
 
             case 'content':
                 $value = $postTypeAPI->getContent($post);
-                return HooksAPIFacade::getInstance()->applyFilters('pop_content', $value, $typeResolver->getId($post));
+                return HooksAPIFacade::getInstance()->applyFilters('pop_content', $value, $typeResolver->getID($post));
 
             case 'url':
                 return $postTypeAPI->getPermalink($post);
