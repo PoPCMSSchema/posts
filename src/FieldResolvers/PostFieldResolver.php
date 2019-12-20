@@ -4,12 +4,13 @@ namespace PoP\Posts\FieldResolvers;
 use PoP\FieldQuery\FieldQueryUtils;
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
+use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
+use PoP\Content\FieldInterfaces\ContentFieldInterfaceResolver;
+use PoP\Content\FieldInterfaces\LinkableFieldInterfaceResolver;
+use PoP\Content\FieldInterfaces\PublishableFieldInterfaceResolver;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
-use PoP\Posts\FieldInterfaces\ContentFieldInterfaceResolver;
-use PoP\Posts\FieldInterfaces\LinkableFieldInterfaceResolver;
-use PoP\Posts\FieldInterfaces\PublishableFieldInterfaceResolver;
 
 class PostFieldResolver extends AbstractDBDataFieldResolver
 {
