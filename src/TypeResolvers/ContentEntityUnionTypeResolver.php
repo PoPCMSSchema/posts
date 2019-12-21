@@ -18,7 +18,7 @@ class ContentEntityUnionTypeResolver extends AbstractUnionTypeResolver
     public function getSchemaTypeDescription(): ?string
     {
         $translationAPI = TranslationAPIFacade::getInstance();
-        return $translationAPI->__('Union of \'post\' type resolvers', 'posts');
+        return $translationAPI->__('Union of \'content entity\' type resolvers', 'content');
     }
 
     public function getTypeDataLoaderClass(): string
