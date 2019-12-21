@@ -3,7 +3,7 @@ namespace PoP\Posts\TypeResolverPickers;
 
 use PoP\ComponentModel\TypeResolverPickers\AbstractTypeResolverPicker;
 use PoP\Posts\Facades\PostTypeAPIFacade;
-use PoP\Posts\TypeResolvers\ContentEntityUnionTypeResolver;
+use PoP\Content\TypeResolvers\ContentEntityUnionTypeResolver;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 
 class PostTypeResolverPicker extends AbstractTypeResolverPicker
