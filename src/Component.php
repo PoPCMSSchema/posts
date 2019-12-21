@@ -1,10 +1,13 @@
 <?php
 namespace PoP\Posts;
 
+use PoP\Posts\Environment;
 use PoP\Root\Component\AbstractComponent;
-use PoP\Posts\Config\ServiceConfiguration;
 use PoP\Root\Component\YAMLServicesTrait;
+use PoP\Posts\Config\ServiceConfiguration;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
+use PoP\ComponentModel\AttachableExtensions\AttachableExtensionGroups;
+use PoP\Posts\TypeResolverPickers\Optional\PostContentEntityTypeResolverPicker;
 
 /**
  * Initialize component
@@ -35,6 +38,18 @@ class Component extends AbstractComponent
 
         // Initialize classes
         ContainerBuilderUtils::attachFieldResolversFromNamespace(__NAMESPACE__.'\\FieldResolvers');
-        ContainerBuilderUtils::attachTypeResolverPickersFromNamespace(__NAMESPACE__.'\\TypeResolverPickers');
+        self::attachTypeResolverPickers();
+    }
+
+    /**
+     * If enabled, load the TypeResolverPickers
+     *
+     * @return void
+     */
+    protected static function attachTypeResolverPickers()
+    {
+        if (Environment::addPostTypeToContentEntityUnionTypes()) {
+            PostContentEntityTypeResolverPicker::attach(AttachableExtensionGroups::TYPERESOLVERPICKERS);
+        }
     }
 }

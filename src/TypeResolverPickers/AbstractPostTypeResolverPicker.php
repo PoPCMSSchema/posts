@@ -3,18 +3,10 @@ namespace PoP\Posts\TypeResolverPickers;
 
 use PoP\ComponentModel\TypeResolverPickers\AbstractTypeResolverPicker;
 use PoP\Posts\Facades\PostTypeAPIFacade;
-use PoP\Content\TypeResolvers\ContentEntityUnionTypeResolver;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 
-class PostTypeResolverPicker extends AbstractTypeResolverPicker
+abstract class AbstractPostTypeResolverPicker extends AbstractTypeResolverPicker
 {
-    public static function getClassesToAttachTo(): array
-    {
-        return [
-            ContentEntityUnionTypeResolver::class,
-        ];
-    }
-
     public function getTypeResolverClass(): string
     {
         return PostTypeResolver::class;
