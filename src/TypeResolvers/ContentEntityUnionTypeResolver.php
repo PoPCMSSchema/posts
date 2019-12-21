@@ -2,13 +2,13 @@
 namespace PoP\Posts\TypeResolvers;
 
 use PoP\Translation\Facades\TranslationAPIFacade;
-use PoP\Posts\TypeDataLoaders\PostUnionTypeDataLoader;
+use PoP\Posts\TypeDataLoaders\ContentEntityUnionTypeDataLoader;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\TypeResolvers\AbstractUnionTypeResolver;
 
-class PostUnionTypeResolver extends AbstractUnionTypeResolver
+class ContentEntityUnionTypeResolver extends AbstractUnionTypeResolver
 {
-    public const NAME = 'PostUnion';
+    public const NAME = 'ContentEntityUnion';
 
     public function getTypeName(): string
     {
@@ -23,7 +23,7 @@ class PostUnionTypeResolver extends AbstractUnionTypeResolver
 
     public function getTypeDataLoaderClass(): string
     {
-        return PostUnionTypeDataLoader::class;
+        return ContentEntityUnionTypeDataLoader::class;
     }
 
     /**
