@@ -69,7 +69,7 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
                 $query = [
                     'limit' => -1,
                     'post-status' => [
-                        POP_POSTSTATUS_PUBLISHED,
+                        \POP_POSTSTATUS_PUBLISHED,
                     ],
                 ];
                 if ($fieldName == 'content') {
