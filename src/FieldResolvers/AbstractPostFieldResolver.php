@@ -1,12 +1,16 @@
 <?php
 namespace PoP\Posts\FieldResolvers;
 
+use PoP\Posts\Facades\PostTypeAPIFacade;
+use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\Schema\TypeCastingHelpers;
 use PoP\Translation\Facades\TranslationAPIFacade;
+use PoP\ComponentModel\TypeResolvers\UnionTypeHelpers;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
+use PoP\Content\TypeResolvers\ContentEntityUnionTypeResolver;
+use PoP\PostsWP\TypeResolverPickers\ContentEntityUnionTypeHelpers;
 use PoP\ComponentModel\FieldResolvers\AbstractQueryableFieldResolver;
-use PoP\Posts\TypeResolvers\PostTypeResolver;
 
 abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
 {
@@ -14,6 +18,7 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
     {
         return [
 			'posts',
+			'content',
         ];
     }
 
@@ -21,6 +26,7 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
     {
         $types = [
 			'posts' => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ID),
+			'content' => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ID),
         ];
         return $types[$fieldName] ?? parent::getSchemaFieldType($typeResolver, $fieldName);
     }
@@ -30,6 +36,7 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
 			'posts' => $translationAPI->__('Posts', 'pop-posts'),
+			'content' => $translationAPI->__('Collection of all types considered “content” (eg: posts and events)', 'pop-posts'),
         ];
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
     }
@@ -38,6 +45,7 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
     {
         switch ($fieldName) {
             case 'posts':
+            case 'content':
                 return $this->getFieldArgumentsSchemaDefinitions($typeResolver, $fieldName);
         }
         return parent::getSchemaFieldArgs($typeResolver, $fieldName);
@@ -47,6 +55,7 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
     {
         switch ($fieldName) {
             case 'posts':
+            case 'content':
                 return false;
         }
         return parent::enableOrderedSchemaFieldArgs($typeResolver, $fieldName);
@@ -54,31 +63,35 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
 
     protected function getQuery(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = []): array
     {
-        // $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
         switch ($fieldName) {
             case 'posts':
-                return [
+            case 'content':
+                $query = [
                     'limit' => -1,
                     'post-status' => [
                         POP_POSTSTATUS_PUBLISHED,
                     ],
-                    // 'post-types' => array_keys($cmspostsapi->getPostTypes()),
                 ];
+                if ($fieldName == 'content') {
+                    $query['post-types'] = ContentEntityUnionTypeHelpers::getPostUnionTypeResolverTargetTypeResolverPostTypes();
+                }
+                return $query;
         }
         return [];
     }
 
     public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
-        $cmspostsapi = \PoP\Posts\FunctionAPIFactory::getInstance();
+        $postTypeAPI = PostTypeAPIFacade::getInstance();
         switch ($fieldName) {
             case 'posts':
+            case 'content':
                 $query = $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs);
                 $options = [
                     'return-type' => POP_RETURNTYPE_IDS,
                 ];
                 $this->addFilterDataloadQueryArgs($options, $typeResolver, $fieldName, $fieldArgs);
-                return $cmspostsapi->getPosts($query, $options);
+                return $postTypeAPI->getPosts($query, $options);
         }
 
         return parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
@@ -89,6 +102,8 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
         switch ($fieldName) {
             case 'posts':
                 return PostTypeResolver::class;
+            case 'content':
+                return UnionTypeHelpers::getUnionOrTargetTypeResolverClass(ContentEntityUnionTypeResolver::class);
         }
 
         return parent::resolveFieldTypeResolverClass($typeResolver, $fieldName, $fieldArgs);
