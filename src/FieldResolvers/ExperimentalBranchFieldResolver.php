@@ -21,6 +21,11 @@ class ExperimentalBranchFieldResolver extends PostContentFieldResolver
         ];
     }
 
+    public static function getImplementedInterfaceClasses(): array
+    {
+        return [];
+    }
+
     public function getSchemaFieldArgs(TypeResolverInterface $typeResolver, string $fieldName): array
     {
         $translationAPI = TranslationAPIFacade::getInstance();
