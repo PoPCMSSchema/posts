@@ -11,7 +11,9 @@ class PostPostTypeFieldResolver extends AbstractDBDataFieldResolver
 {
     public static function getClassesToAttachTo(): array
     {
-        return array(PostTypeResolver::class);
+        return [
+            PostTypeResolver::class,
+        ];
     }
 
     public static function getFieldNamesToResolve(): array

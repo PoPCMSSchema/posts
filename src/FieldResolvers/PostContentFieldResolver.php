@@ -10,7 +10,9 @@ class PostContentFieldResolver extends AbstractContentEntityFieldResolver
 {
     public static function getClassesToAttachTo(): array
     {
-        return array(PostTypeResolver::class);
+        return [
+            PostTypeResolver::class,
+        ];
     }
 
     protected function getContentEntityTypeAPI(): ContentEntityTypeAPIInterface
