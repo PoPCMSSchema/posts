@@ -73,7 +73,7 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
                     ],
                 ];
                 if ($fieldName == 'content') {
-                    $query['post-types'] = ContentEntityUnionTypeHelpers::getPostUnionTypeResolverTargetTypeResolverPostTypes();
+                    $query['types-from-union-resolver-class'] = ContentEntityUnionTypeResolver::class;
                 }
                 return $query;
         }
