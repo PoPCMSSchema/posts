@@ -10,7 +10,7 @@ class PostTypeDataLoader extends AbstractTypeQueryableDataLoader
 {
     public function getFilterDataloadingModule(): ?array
     {
-        return [\PoP_Posts_Module_Processor_FieldDataloads::class, \PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_DATAQUERY_POSTLIST_FIELDS];
+        return [\PoP_Posts_Module_Processor_FieldDataloads::class, \PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_RELATIONALFIELDS_POSTLIST];
     }
 
     public function getObjectQuery(array $ids): array
