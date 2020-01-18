@@ -19,14 +19,14 @@ class PostPostTypeFieldResolver extends AbstractDBDataFieldResolver
     public static function getFieldNamesToResolve(): array
     {
         return [
-            'post-type',
+            'postType',
         ];
     }
 
     public function getSchemaFieldType(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $types = [
-            'post-type' => SchemaDefinition::TYPE_STRING,
+            'postType' => SchemaDefinition::TYPE_STRING,
         ];
         return $types[$fieldName] ?? parent::getSchemaFieldType($typeResolver, $fieldName);
     }
@@ -35,7 +35,7 @@ class PostPostTypeFieldResolver extends AbstractDBDataFieldResolver
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
-            'post-type' => $translationAPI->__('Post type', 'content'),
+            'postType' => $translationAPI->__('Post type', 'content'),
         ];
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
     }
@@ -45,7 +45,7 @@ class PostPostTypeFieldResolver extends AbstractDBDataFieldResolver
         $cmspostsresolver = \PoP\Posts\ObjectPropertyResolverFactory::getInstance();
         $post = $resultItem;
         switch ($fieldName) {
-            case 'post-type':
+            case 'postType':
                 return $cmspostsresolver->getPostType($post);
         }
 
