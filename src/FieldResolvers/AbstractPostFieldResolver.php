@@ -9,7 +9,6 @@ use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\UnionTypeHelpers;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\Content\TypeResolvers\ContentEntityUnionTypeResolver;
-use PoP\PostsWP\TypeResolverPickers\ContentEntityUnionTypeHelpers;
 use PoP\ComponentModel\FieldResolvers\AbstractQueryableFieldResolver;
 
 abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
