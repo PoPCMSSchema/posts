@@ -7,6 +7,10 @@ services:
         resource: '../src/TypeResolverPickers/*'
         public: true
 
+    PoP\Posts\TypeResolvers\:
+        resource: '../src/TypeResolvers/*'
+        public: true
+
     PoP\Posts\Conditional\API\RouteModuleProcessors\:
         resource: '../src/Conditional/API/RouteModuleProcessors/*'
         public: true
