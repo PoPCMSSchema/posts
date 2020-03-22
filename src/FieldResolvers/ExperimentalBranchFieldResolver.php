@@ -28,29 +28,33 @@ class ExperimentalBranchFieldResolver extends PostContentFieldResolver
 
     public function getSchemaFieldArgs(TypeResolverInterface $typeResolver, string $fieldName): array
     {
+        $schemaFieldArgs = parent::getSchemaFieldArgs($typeResolver, $fieldName);
         $translationAPI = TranslationAPIFacade::getInstance();
         switch ($fieldName) {
             case 'excerpt':
-                $ret = parent::getSchemaFieldArgs($typeResolver, $fieldName);
-                $ret[] = [
-                    SchemaDefinition::ARGNAME_NAME => 'branch',
-                    SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_STRING,
-                    SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The branch name, set to value \'experimental\', enabling to use this fieldResolver', 'pop-posts'),
-                ];
-                $ret[] = [
-                    SchemaDefinition::ARGNAME_NAME => 'length',
-                    SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_INT,
-                    SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('Maximum length for the except, in number of characters', 'pop-posts'),
-                ];
-                $ret[] = [
-                    SchemaDefinition::ARGNAME_NAME => 'more',
-                    SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_STRING,
-                    SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('String to append at the end of the excerpt (if it is shortened by the \'length\' parameter)', 'pop-posts'),
-                ];
-                return $ret;
+                return array_merge(
+                    $schemaFieldArgs,
+                    [
+                        [
+                            SchemaDefinition::ARGNAME_NAME => 'branch',
+                            SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_STRING,
+                            SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The branch name, set to value \'experimental\', enabling to use this fieldResolver', 'pop-posts'),
+                        ],
+                        [
+                            SchemaDefinition::ARGNAME_NAME => 'length',
+                            SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_INT,
+                            SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('Maximum length for the except, in number of characters', 'pop-posts'),
+                        ], 
+                        [
+                            SchemaDefinition::ARGNAME_NAME => 'more',
+                            SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_STRING,
+                            SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('String to append at the end of the excerpt (if it is shortened by the \'length\' parameter)', 'pop-posts'),
+                        ],
+                    ]
+                );
         }
 
-        return parent::getSchemaFieldArgs($typeResolver, $fieldName);
+        return $schemaFieldArgs;
     }
 
     public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
