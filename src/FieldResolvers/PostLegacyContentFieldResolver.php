@@ -20,14 +20,14 @@ class PostLegacyContentFieldResolver extends AbstractDBDataFieldResolver
     public static function getFieldNamesToResolve(): array
     {
         return [
-            'published',
+            'isPublished',
         ];
     }
 
     public function getSchemaFieldType(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $types = [
-            'published' => SchemaDefinition::TYPE_BOOL,
+            'isPublished' => SchemaDefinition::TYPE_BOOL,
         ];
         return $types[$fieldName] ?? parent::getSchemaFieldType($typeResolver, $fieldName);
     }
@@ -36,7 +36,7 @@ class PostLegacyContentFieldResolver extends AbstractDBDataFieldResolver
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
-            'published' => $translationAPI->__('Has the post been published?', 'content'),
+            'isPublished' => $translationAPI->__('Has the post been published?', 'content'),
         ];
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
     }
@@ -44,9 +44,9 @@ class PostLegacyContentFieldResolver extends AbstractDBDataFieldResolver
     public function getSchemaFieldDeprecationDescription(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): ?string
     {
         $translationAPI = TranslationAPIFacade::getInstance();
-        $placeholder_status = $translationAPI->__('Use \'is-status(status:%s)\' instead of \'%s\'', 'content');
+        $placeholder_status = $translationAPI->__('Use \'isStatus(status:%s)\' instead of \'%s\'', 'content');
         $descriptions = [
-            'published' => sprintf(
+            'isPublished' => sprintf(
                 $placeholder_status,
                 \POP_POSTSTATUS_PUBLISHED,
                 $fieldName
@@ -60,7 +60,7 @@ class PostLegacyContentFieldResolver extends AbstractDBDataFieldResolver
         $postTypeAPI = PostTypeAPIFacade::getInstance();
         $post = $resultItem;
         switch ($fieldName) {
-            case 'published':
+            case 'isPublished':
                 return \POP_POSTSTATUS_PUBLISHED == $postTypeAPI->getStatus($post);
         }
 
