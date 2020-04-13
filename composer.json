@@ -19,9 +19,9 @@
     "prefer-stable": true,
     "require": {
         "php" : "~7.1",
-        "getpop/queriedobject": "dev-master",
-        "getpop/content": "dev-master",
-        "getpop/migrate-posts": "^1.0@dev"
+        "getpop/queriedobject": "~0.1",
+        "getpop/content": "~0.1",
+        "getpop/migrate-posts": "~0.1"
     },
     "require-dev": {
         "phpunit/phpunit" : ">=7.0",
