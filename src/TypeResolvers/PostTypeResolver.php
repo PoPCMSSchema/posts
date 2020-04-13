@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace PoP\Posts\TypeResolvers;
 
 use PoP\Posts\Facades\PostTypeAPIFacade;
