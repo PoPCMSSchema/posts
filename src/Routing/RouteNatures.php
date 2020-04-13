@@ -1,6 +1,7 @@
 <?php
 namespace PoP\Posts\Routing;
 
-class RouteNatures {
+class RouteNatures
+{
     public const POST = 'post';
 }

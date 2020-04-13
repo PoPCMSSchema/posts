@@ -30,7 +30,7 @@ class RootPostFieldResolver extends AbstractPostFieldResolver
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
-			'post' => $translationAPI->__('Post with a specific ID', 'posts'),
+            'post' => $translationAPI->__('Post with a specific ID', 'posts'),
         ];
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
     }
@@ -38,7 +38,7 @@ class RootPostFieldResolver extends AbstractPostFieldResolver
     public function getSchemaFieldType(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $types = [
-			'post' => SchemaDefinition::TYPE_ID,
+            'post' => SchemaDefinition::TYPE_ID,
         ];
         return $types[$fieldName] ?? parent::getSchemaFieldType($typeResolver, $fieldName);
     }

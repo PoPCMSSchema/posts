@@ -32,4 +32,3 @@ class PostTypeResolver extends AbstractTypeResolver
         return PostTypeDataLoader::class;
     }
 }
-

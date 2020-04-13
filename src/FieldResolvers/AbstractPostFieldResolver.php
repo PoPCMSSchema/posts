@@ -16,16 +16,16 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
     public static function getFieldNamesToResolve(): array
     {
         return [
-			'posts',
-			'content',
+            'posts',
+            'content',
         ];
     }
 
     public function getSchemaFieldType(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $types = [
-			'posts' => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ID),
-			'content' => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ID),
+            'posts' => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ID),
+            'content' => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ID),
         ];
         return $types[$fieldName] ?? parent::getSchemaFieldType($typeResolver, $fieldName);
     }
@@ -34,8 +34,8 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
-			'posts' => $translationAPI->__('Posts', 'pop-posts'),
-			'content' => $translationAPI->__('Collection of all types considered “content” (eg: posts and events)', 'pop-posts'),
+            'posts' => $translationAPI->__('Posts', 'pop-posts'),
+            'content' => $translationAPI->__('Collection of all types considered “content” (eg: posts and events)', 'pop-posts'),
         ];
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
     }

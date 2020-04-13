@@ -44,7 +44,7 @@ class ExperimentalBranchFieldResolver extends PostContentFieldResolver
                             SchemaDefinition::ARGNAME_NAME => 'length',
                             SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_INT,
                             SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('Maximum length for the except, in number of characters', 'pop-posts'),
-                        ], 
+                        ],
                         [
                             SchemaDefinition::ARGNAME_NAME => 'more',
                             SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_STRING,
