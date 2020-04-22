@@ -18,8 +18,14 @@ class PostTypeDataLoader extends AbstractTypeQueryableDataLoader
 
     public function getObjectQuery(array $ids): array
     {
+        $postTypeAPI = PostTypeAPIFacade::getInstance();
         return array(
             'include' => $ids,
+            // If not adding the post types, WordPress only uses "post", so querying by CPT would fail loading data
+            // This should be considered for the CMS-agnostic case if it makes sense
+            'post-types' => $postTypeAPI->getPostTypes([
+                'public' => true,
+            ])
         );
     }
 
