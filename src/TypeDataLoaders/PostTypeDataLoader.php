@@ -13,7 +13,10 @@ class PostTypeDataLoader extends AbstractTypeQueryableDataLoader
 {
     public function getFilterDataloadingModule(): ?array
     {
-        return [\PoP_Posts_Module_Processor_FieldDataloads::class, \PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_RELATIONALFIELDS_POSTLIST];
+        return [
+            \PoP_Posts_Module_Processor_FieldDataloads::class,
+            \PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_RELATIONALFIELDS_POSTLIST
+        ];
     }
 
     public function getObjectQuery(array $ids): array
@@ -24,7 +27,7 @@ class PostTypeDataLoader extends AbstractTypeQueryableDataLoader
             // If not adding the post types, WordPress only uses "post", so querying by CPT would fail loading data
             // This should be considered for the CMS-agnostic case if it makes sense
             'post-types' => $postTypeAPI->getPostTypes([
-                'public' => true,
+                'publicly-queryable' => true,
             ])
         );
     }
