@@ -52,6 +52,7 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
         $schemaFieldArgs = parent::getSchemaFieldArgs($typeResolver, $fieldName);
         switch ($fieldName) {
             case 'posts':
+            case 'postCount':
             case 'content':
                 return array_merge(
                     $schemaFieldArgs,
@@ -65,10 +66,20 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
     {
         switch ($fieldName) {
             case 'posts':
+            case 'postCount':
             case 'content':
                 return false;
         }
         return parent::enableOrderedSchemaFieldArgs($typeResolver, $fieldName);
+    }
+
+    protected function getFieldDefaultFilterDataloadingModule(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): ?array
+    {
+        switch ($fieldName) {
+            case 'postCount':
+                return [\PoP_Posts_Module_Processor_FieldDataloads::class, \PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_RELATIONALFIELDS_POSTCOUNT];
+        }
+        return parent::getFieldDefaultFilterDataloadingModule($typeResolver, $fieldName, $fieldArgs);
     }
 
     protected function getQuery(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = []): array
@@ -110,7 +121,9 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
                 return $postTypeAPI->getPosts($query, $options);
             case 'postCount':
                 $query = $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs);
-                return $postTypeAPI->getPostCount($query);
+                $options = [];
+                $this->addFilterDataloadQueryArgs($options, $typeResolver, $fieldName, $fieldArgs);
+                return $postTypeAPI->getPostCount($query, $options);
         }
 
         return parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
