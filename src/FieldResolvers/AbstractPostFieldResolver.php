@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PoP\Posts\FieldResolvers;
 
+use PoP\Posts\ComponentConfiguration;
 use PoP\Posts\Facades\PostTypeAPIFacade;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\ComponentModel\Schema\SchemaDefinition;
@@ -73,7 +74,7 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
             case 'posts':
             case 'content':
                 $query = [
-                    'limit' => -1,
+                    'limit' => ComponentConfiguration::getPostListDefaultLimit(),
                     'post-status' => [
                         \POP_POSTSTATUS_PUBLISHED,
                     ],

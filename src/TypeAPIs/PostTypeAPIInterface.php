@@ -31,7 +31,7 @@ interface PostTypeAPIInterface extends ContentEntityTypeAPIInterface
      * @param [type] $id
      * @return void
      */
-    public function getPost($id);
+    public function getPost($id): ?object;
     /**
      * Indicate if an post with provided ID exists
      *
