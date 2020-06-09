@@ -21,6 +21,7 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
     {
         return [
             'posts',
+            'postCount',
             'content',
         ];
     }
@@ -29,6 +30,7 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
     {
         $types = [
             'posts' => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ID),
+            'postCount' => SchemaDefinition::TYPE_INT,
             'content' => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ID),
         ];
         return $types[$fieldName] ?? parent::getSchemaFieldType($typeResolver, $fieldName);
@@ -39,6 +41,7 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
             'posts' => $translationAPI->__('Posts', 'pop-posts'),
+            'postCount' => $translationAPI->__('Number of posts', 'pop-posts'),
             'content' => $translationAPI->__('Collection of all types considered “content” (eg: posts and events)', 'pop-posts'),
         ];
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
@@ -83,6 +86,12 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
                     $query['types-from-union-resolver-class'] = ContentEntityUnionTypeResolver::class;
                 }
                 return $query;
+            case 'postCount':
+                return [
+                    'post-status' => [
+                        \POP_POSTSTATUS_PUBLISHED,
+                    ],
+                ];
         }
         return [];
     }
@@ -99,6 +108,9 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
                 ];
                 $this->addFilterDataloadQueryArgs($options, $typeResolver, $fieldName, $fieldArgs);
                 return $postTypeAPI->getPosts($query, $options);
+            case 'postCount':
+                $query = $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs);
+                return $postTypeAPI->getPostCount($query);
         }
 
         return parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
