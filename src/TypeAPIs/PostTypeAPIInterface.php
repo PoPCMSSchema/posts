@@ -54,7 +54,7 @@ interface PostTypeAPIInterface extends ContentEntityTypeAPIInterface
     public function getPostType($post);
     public function getSlug($postObjectOrID): ?string;
     public function getBasicPostContent($post_id);
-    public function getPostCount($query);
+    public function getPostCount($query): int;
     public function getExcerptMore();
     public function getExcerptLength();
 }
