@@ -10,9 +10,7 @@ use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\Schema\TypeCastingHelpers;
 use PoP\Translation\Facades\TranslationAPIFacade;
-use PoP\ComponentModel\TypeResolvers\UnionTypeHelpers;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
-use PoP\Content\TypeResolvers\ContentEntityUnionTypeResolver;
 use PoP\ComponentModel\FieldResolvers\AbstractQueryableFieldResolver;
 
 abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
@@ -22,7 +20,6 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
         return [
             'posts',
             'postCount',
-            'content',
         ];
     }
 
@@ -31,7 +28,6 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
         $types = [
             'posts' => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ID),
             'postCount' => SchemaDefinition::TYPE_INT,
-            'content' => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ID),
         ];
         return $types[$fieldName] ?? parent::getSchemaFieldType($typeResolver, $fieldName);
     }
@@ -42,7 +38,6 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
         $descriptions = [
             'posts' => $translationAPI->__('Posts', 'pop-posts'),
             'postCount' => $translationAPI->__('Number of posts', 'pop-posts'),
-            'content' => $translationAPI->__('Collection of all types considered “content” (eg: posts and events)', 'pop-posts'),
         ];
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
     }
@@ -53,7 +48,6 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
         switch ($fieldName) {
             case 'posts':
             case 'postCount':
-            case 'content':
                 return array_merge(
                     $schemaFieldArgs,
                     $this->getFieldArgumentsSchemaDefinitions($typeResolver, $fieldName)
@@ -67,7 +61,6 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
         switch ($fieldName) {
             case 'posts':
             case 'postCount':
-            case 'content':
                 return false;
         }
         return parent::enableOrderedSchemaFieldArgs($typeResolver, $fieldName);
@@ -86,17 +79,12 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
     {
         switch ($fieldName) {
             case 'posts':
-            case 'content':
-                $query = [
+                return [
                     'limit' => ComponentConfiguration::getPostListDefaultLimit(),
                     'post-status' => [
                         \POP_POSTSTATUS_PUBLISHED,
                     ],
                 ];
-                if ($fieldName == 'content') {
-                    $query['types-from-union-resolver-class'] = ContentEntityUnionTypeResolver::class;
-                }
-                return $query;
             case 'postCount':
                 return [
                     'post-status' => [
@@ -112,7 +100,6 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
         $postTypeAPI = PostTypeAPIFacade::getInstance();
         switch ($fieldName) {
             case 'posts':
-            case 'content':
                 $query = $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs);
                 $options = [
                     'return-type' => POP_RETURNTYPE_IDS,
@@ -134,8 +121,6 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
         switch ($fieldName) {
             case 'posts':
                 return PostTypeResolver::class;
-            case 'content':
-                return UnionTypeHelpers::getUnionOrTargetTypeResolverClass(ContentEntityUnionTypeResolver::class);
         }
 
         return parent::resolveFieldTypeResolverClass($typeResolver, $fieldName, $fieldArgs);
