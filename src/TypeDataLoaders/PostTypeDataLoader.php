@@ -8,6 +8,7 @@ use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\TypeDataLoaders\AbstractTypeQueryableDataLoader;
 use PoP\Posts\Facades\PostTypeAPIFacade;
+use PoP\Content\Types\Status;
 
 class PostTypeDataLoader extends AbstractTypeQueryableDataLoader
 {
@@ -44,9 +45,9 @@ class PostTypeDataLoader extends AbstractTypeQueryableDataLoader
         $query = array();
         $query['include'] = $ids;
         $query['post-status'] = [
-            POP_POSTSTATUS_PUBLISHED,
-            POP_POSTSTATUS_DRAFT,
-            POP_POSTSTATUS_PENDING,
+            Status::PUBLISHED,
+            Status::DRAFT,
+            Status::PENDING,
         ]; // Status can also be 'pending', so don't limit it here, just select by ID
 
         return $query;

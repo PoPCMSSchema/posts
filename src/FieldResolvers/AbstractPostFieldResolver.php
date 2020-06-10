@@ -12,6 +12,7 @@ use PoP\ComponentModel\Schema\TypeCastingHelpers;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\FieldResolvers\AbstractQueryableFieldResolver;
+use PoP\Content\Types\Status;
 
 abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
 {
@@ -82,13 +83,13 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
                 return [
                     'limit' => ComponentConfiguration::getPostListDefaultLimit(),
                     'post-status' => [
-                        \POP_POSTSTATUS_PUBLISHED,
+                        Status::PUBLISHED,
                     ],
                 ];
             case 'postCount':
                 return [
                     'post-status' => [
-                        \POP_POSTSTATUS_PUBLISHED,
+                        Status::PUBLISHED,
                     ],
                 ];
         }

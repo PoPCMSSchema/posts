@@ -11,6 +11,7 @@ use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\Posts\Facades\PostTypeAPIFacade;
+use PoP\Content\Types\Status;
 
 class RootPostFieldResolver extends AbstractPostFieldResolver
 {
@@ -75,7 +76,7 @@ class RootPostFieldResolver extends AbstractPostFieldResolver
                 $query = [
                     'include' => [$fieldArgs['id']],
                     'post-status' => [
-                        POP_POSTSTATUS_PUBLISHED,
+                        Status::PUBLISHED,
                     ],
                 ];
                 $options = [

@@ -10,6 +10,7 @@ use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
+use PoP\Content\Types\Status;
 
 class PostLegacyContentFieldResolver extends AbstractDBDataFieldResolver
 {
@@ -51,7 +52,7 @@ class PostLegacyContentFieldResolver extends AbstractDBDataFieldResolver
         $descriptions = [
             'isPublished' => sprintf(
                 $placeholder_status,
-                \POP_POSTSTATUS_PUBLISHED,
+                Status::PUBLISHED,
                 $fieldName
             ),
         ];
@@ -64,7 +65,7 @@ class PostLegacyContentFieldResolver extends AbstractDBDataFieldResolver
         $post = $resultItem;
         switch ($fieldName) {
             case 'isPublished':
-                return \POP_POSTSTATUS_PUBLISHED == $postTypeAPI->getStatus($post);
+                return Status::PUBLISHED == $postTypeAPI->getStatus($post);
         }
 
         return parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
