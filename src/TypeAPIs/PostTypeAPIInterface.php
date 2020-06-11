@@ -49,7 +49,7 @@ interface PostTypeAPIInterface extends ContentEntityTypeAPIInterface
     // public function getModifiedDate($postObjectOrID): ?string;
     public function getAuthorID($postObjectOrID);
 
-    public function getPosts($query, array $options = []);
+    public function getPosts($query, array $options = []): array;
     public function getPostTypes($query = array()): array;
     public function getPostType($post);
     public function getSlug($postObjectOrID): ?string;
