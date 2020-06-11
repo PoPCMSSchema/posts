@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace PoP\Posts\TypeAPIs;
 
-use PoP\Content\TypeAPIs\ContentEntityTypeAPIInterface;
+use PoP\Content\TypeAPIs\CustomPostTypeAPIInterface;
 
 /**
  * Methods to interact with the Type, to be implemented by the underlying CMS
  */
-interface PostTypeAPIInterface extends ContentEntityTypeAPIInterface
+interface PostTypeAPIInterface extends CustomPostTypeAPIInterface
 {
     /**
      * Return the post's ID

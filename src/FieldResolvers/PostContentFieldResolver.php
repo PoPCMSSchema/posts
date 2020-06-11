@@ -6,10 +6,10 @@ namespace PoP\Posts\FieldResolvers;
 
 use PoP\Posts\Facades\PostTypeAPIFacade;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
-use PoP\Content\TypeAPIs\ContentEntityTypeAPIInterface;
-use PoP\Content\FieldResolvers\AbstractContentEntityFieldResolver;
+use PoP\Content\TypeAPIs\CustomPostTypeAPIInterface;
+use PoP\Content\FieldResolvers\AbstractCustomPostFieldResolver;
 
-class PostContentFieldResolver extends AbstractContentEntityFieldResolver
+class PostContentFieldResolver extends AbstractCustomPostFieldResolver
 {
     public static function getClassesToAttachTo(): array
     {
@@ -18,7 +18,7 @@ class PostContentFieldResolver extends AbstractContentEntityFieldResolver
         ];
     }
 
-    protected function getContentEntityTypeAPI(): ContentEntityTypeAPIInterface
+    protected function getCustomPostTypeAPI(): CustomPostTypeAPIInterface
     {
         $postTypeAPI = PostTypeAPIFacade::getInstance();
         return $postTypeAPI;
