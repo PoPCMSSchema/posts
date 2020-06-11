@@ -6,8 +6,8 @@ namespace PoP\Posts\FieldResolvers;
 
 use PoP\Posts\Facades\PostTypeAPIFacade;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
-use PoP\Content\TypeAPIs\CustomPostTypeAPIInterface;
-use PoP\Content\FieldResolvers\AbstractCustomPostFieldResolver;
+use PoP\CustomPosts\TypeAPIs\CustomPostTypeAPIInterface;
+use PoP\CustomPosts\FieldResolvers\AbstractCustomPostFieldResolver;
 
 class PostContentFieldResolver extends AbstractCustomPostFieldResolver
 {

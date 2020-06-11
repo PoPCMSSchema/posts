@@ -10,7 +10,7 @@ use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
-use PoP\Content\Types\Status;
+use PoP\CustomPosts\Types\Status;
 
 class PostLegacyContentFieldResolver extends AbstractDBDataFieldResolver
 {
