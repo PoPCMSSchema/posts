@@ -11,6 +11,6 @@ class Environment
 
     public static function addPostTypeToCustomPostUnionTypes(): bool
     {
-        return isset($_ENV['ADD_POST_TYPE_TO_CUSTOM_POST_UNION_TYPES']) ? strtolower($_ENV['ADD_POST_TYPE_TO_CUSTOM_POST_UNION_TYPES']) == "true" : true;
+        return isset($_ENV['ADD_POST_TYPE_TO_CUSTOMPOST_UNION_TYPES']) ? strtolower($_ENV['ADD_POST_TYPE_TO_CUSTOMPOST_UNION_TYPES']) == "true" : true;
     }
 }
