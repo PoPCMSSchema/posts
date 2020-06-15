@@ -17,6 +17,8 @@ use PoP\Posts\TypeResolverPickers\Optional\PostCustomPostTypeResolverPicker;
  */
 class Component extends AbstractComponent
 {
+    public static $COMPONENT_DIR;
+
     use YAMLServicesTrait;
     // const VERSION = '0.1.0';
 
@@ -38,6 +40,8 @@ class Component extends AbstractComponent
         return [
             \PoP\API\Component::class,
             \PoP\RESTAPI\Component::class,
+            \PoP\Taxonomies\Component::class,
+            \PoP\Users\Component::class,
         ];
     }
 
@@ -58,9 +62,28 @@ class Component extends AbstractComponent
     ): void {
         parent::doInitialize($configuration, $skipSchema, $skipSchemaComponentClasses);
         ComponentConfiguration::setConfiguration($configuration);
-        self::initYAMLServices(dirname(__DIR__));
-        self::maybeInitYAMLSchemaServices(dirname(__DIR__), $skipSchema);
+        self::$COMPONENT_DIR = dirname(__DIR__);
+        self::initYAMLServices(self::$COMPONENT_DIR);
+        self::maybeInitYAMLSchemaServices(self::$COMPONENT_DIR, $skipSchema);
         ServiceConfiguration::initialize();
+
+        if (class_exists('\PoP\Users\Component')
+            && !in_array(\PoP\Users\Component::class, $skipSchemaComponentClasses)
+        ) {
+            \PoP\Posts\Conditional\Users\ConditionalComponent::initialize(
+                $configuration,
+                $skipSchema
+            );
+        }
+
+        if (class_exists('\PoP\Taxonomies\Component')
+            && !in_array(\PoP\Taxonomies\Component::class, $skipSchemaComponentClasses)
+        ) {
+            \PoP\Posts\Conditional\Taxonomies\ConditionalComponent::initialize(
+                $configuration,
+                $skipSchema
+            );
+        }
     }
 
     /**
@@ -76,6 +99,14 @@ class Component extends AbstractComponent
         ContainerBuilderUtils::registerTypeResolversFromNamespace(__NAMESPACE__ . '\\TypeResolvers');
         ContainerBuilderUtils::attachFieldResolversFromNamespace(__NAMESPACE__ . '\\FieldResolvers');
         self::attachTypeResolverPickers();
+
+        if (class_exists('\PoP\Users\Component')) {
+            \PoP\Posts\Conditional\Users\ConditionalComponent::beforeBoot();
+        }
+
+        if (class_exists('\PoP\Taxonomies\Component')) {
+            \PoP\Posts\Conditional\Taxonomies\ConditionalComponent::beforeBoot();
+        }
     }
 
     /**
