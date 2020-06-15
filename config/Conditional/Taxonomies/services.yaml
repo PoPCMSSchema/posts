@@ -7,3 +7,11 @@ services:
     PoP\Posts\Conditional\Taxonomies\Hooks\:
         resource: '../../../src/Conditional/Taxonomies/Hooks/*'
         public: true
+
+    PoP\Posts\Conditional\Taxonomies\Conditional\API\RouteModuleProcessors\:
+        resource: '../../../src/Conditional/Taxonomies/Conditional/API/RouteModuleProcessors/*'
+        public: true
+
+    PoP\Posts\Conditional\Taxonomies\Conditional\RESTAPI\RouteModuleProcessors\:
+        resource: '../../../src/Conditional/Taxonomies/Conditional/RESTAPI/RouteModuleProcessors/*'
+        public: true

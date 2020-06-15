@@ -7,3 +7,11 @@ services:
     PoP\Posts\Conditional\Users\Hooks\:
         resource: '../../../src/Conditional/Users/Hooks/*'
         public: true
+
+    PoP\Posts\Conditional\Users\Conditional\API\RouteModuleProcessors\:
+        resource: '../../../src/Conditional/Users/Conditional/API/RouteModuleProcessors/*'
+        public: true
+
+    PoP\Posts\Conditional\Users\Conditional\RESTAPI\RouteModuleProcessors\:
+        resource: '../../../src/Conditional/Users/Conditional/RESTAPI/RouteModuleProcessors/*'
+        public: true

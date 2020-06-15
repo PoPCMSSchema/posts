@@ -65,7 +65,6 @@ class Component extends AbstractComponent
         self::$COMPONENT_DIR = dirname(__DIR__);
         self::initYAMLServices(self::$COMPONENT_DIR);
         self::maybeInitYAMLSchemaServices(self::$COMPONENT_DIR, $skipSchema);
-        ServiceConfiguration::initialize();
 
         if (class_exists('\PoP\Users\Component')
             && !in_array(\PoP\Users\Component::class, $skipSchemaComponentClasses)
@@ -84,6 +83,9 @@ class Component extends AbstractComponent
                 $skipSchema
             );
         }
+
+        // Initialize at the end
+        ServiceConfiguration::initialize();
     }
 
     /**

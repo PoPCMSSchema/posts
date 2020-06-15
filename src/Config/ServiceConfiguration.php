@@ -29,5 +29,42 @@ class ServiceConfiguration
                 'add'
             );
         }
+
+        // Load conditional classes
+        if (class_exists('\PoP\Users\Component')) {
+            // Load API and RESTAPI conditional classes
+            if (class_exists('\PoP\API\Component') && \PoP\API\Component::isEnabled()) {
+                ContainerBuilderUtils::injectServicesIntoService(
+                    'route_module_processor_manager',
+                    'PoP\\Posts\\Conditional\\Users\\Conditional\\API\\RouteModuleProcessors',
+                    'add'
+                );
+            }
+            if (class_exists('\PoP\RESTAPI\Component') && \PoP\RESTAPI\Component::isEnabled()) {
+                ContainerBuilderUtils::injectServicesIntoService(
+                    'route_module_processor_manager',
+                    'PoP\\Posts\\Conditional\\Users\\Conditional\\RESTAPI\\RouteModuleProcessors',
+                    'add'
+                );
+            }
+        }
+
+        if (class_exists('\PoP\Taxonomies\Component')) {
+            // Load API and RESTAPI conditional classes
+            if (class_exists('\PoP\API\Component') && \PoP\API\Component::isEnabled()) {
+                ContainerBuilderUtils::injectServicesIntoService(
+                    'route_module_processor_manager',
+                    'PoP\\Posts\\Conditional\\Taxonomies\\Conditional\\API\\RouteModuleProcessors',
+                    'add'
+                );
+            }
+            if (class_exists('\PoP\RESTAPI\Component') && \PoP\RESTAPI\Component::isEnabled()) {
+                ContainerBuilderUtils::injectServicesIntoService(
+                    'route_module_processor_manager',
+                    'PoP\\Posts\\Conditional\\Taxonomies\\Conditional\\RESTAPI\\RouteModuleProcessors',
+                    'add'
+                );
+            }
+        }
     }
 }
