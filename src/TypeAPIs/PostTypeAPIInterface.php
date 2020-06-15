@@ -47,7 +47,7 @@ interface PostTypeAPIInterface extends CustomPostTypeAPIInterface
     // public function getStatus($postObjectOrID): ?string;
     // public function getPublishedDate($postObjectOrID): ?string;
     // public function getModifiedDate($postObjectOrID): ?string;
-    public function getAuthorID($postObjectOrID);
+    // public function getAuthorID($postObjectOrID);
 
     public function getPosts($query, array $options = []): array;
     public function getPostTypes($query = array()): array;
