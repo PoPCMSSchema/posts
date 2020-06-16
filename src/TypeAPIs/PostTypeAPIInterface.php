@@ -12,13 +12,6 @@ use PoP\CustomPosts\TypeAPIs\CustomPostTypeAPIInterface;
 interface PostTypeAPIInterface extends CustomPostTypeAPIInterface
 {
     /**
-     * Return the post's ID
-     *
-     * @param [type] $post
-     * @return void
-     */
-    public function getID($post);
-    /**
      * Indicates if the passed object is of type Post
      *
      * @param [type] $object
