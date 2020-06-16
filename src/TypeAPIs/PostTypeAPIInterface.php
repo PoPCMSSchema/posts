@@ -40,15 +40,6 @@ interface PostTypeAPIInterface extends CustomPostTypeAPIInterface
      */
     public function postExists($id): bool;
 
-    // public function getTitle($id): ?string;
-    // public function getContent($id): ?string;
-    // public function getPermalink($postObjectOrID): ?string;
-    // public function getExcerpt($postObjectOrID): ?string;
-    // public function getStatus($postObjectOrID): ?string;
-    // public function getPublishedDate($postObjectOrID): ?string;
-    // public function getModifiedDate($postObjectOrID): ?string;
-    // public function getAuthorID($postObjectOrID);
-
     public function getPosts($query, array $options = []): array;
     public function getPostTypes($query = array()): array;
     public function getSlug($postObjectOrID): ?string;
