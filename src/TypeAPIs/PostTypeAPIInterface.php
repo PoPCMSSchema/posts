@@ -28,6 +28,4 @@ interface PostTypeAPIInterface extends CustomPostTypeAPIInterface
 
     public function getPosts($query, array $options = []): array;
     public function getPostCount(array $query = [], array $options = []): int;
-    public function getExcerptMore();
-    public function getExcerptLength();
 }
