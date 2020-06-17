@@ -48,4 +48,10 @@ interface PostTypeAPIInterface extends CustomPostTypeAPIInterface
      * @return array
      */
     public function getPostCount(array $query = [], array $options = []): int;
+    /**
+     * Post custom post type
+     *
+     * @return string
+     */
+    public function getPostCustomPostType(): string;
 }
