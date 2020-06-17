@@ -27,7 +27,7 @@ class PostTypeDataLoader extends AbstractTypeQueryableDataLoader
             'include' => $ids,
             // If not adding the post types, WordPress only uses "post", so querying by CPT would fail loading data
             // This should be considered for the CMS-agnostic case if it makes sense
-            'post-types' => $postTypeAPI->getPostTypes([
+            'post-types' => $postTypeAPI->getCustomPostTypes([
                 'publicly-queryable' => true,
             ])
         );
