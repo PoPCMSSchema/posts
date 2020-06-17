@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PoP\Posts\FieldResolvers;
 
-use PoP\Posts\Facades\PostTypeAPIFacade;
+use PoP\CustomPosts\Facades\CustomPostTypeAPIFacade;
 use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\Translation\Facades\TranslationAPIFacade;
@@ -72,11 +72,11 @@ class PostLegacyContentFieldResolver extends AbstractDBDataFieldResolver
 
     public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
-        $postTypeAPI = PostTypeAPIFacade::getInstance();
+        $customPostTypeAPI = CustomPostTypeAPIFacade::getInstance();
         $post = $resultItem;
         switch ($fieldName) {
             case 'isPublished':
-                return Status::PUBLISHED == $postTypeAPI->getStatus($post);
+                return Status::PUBLISHED == $customPostTypeAPI->getStatus($post);
         }
 
         return parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
