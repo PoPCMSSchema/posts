@@ -6,14 +6,14 @@ namespace PoP\Posts\Conditional\API\RouteModuleProcessors;
 
 use PoP\ModuleRouting\AbstractEntryRouteModuleProcessor;
 use PoP\Routing\RouteNatures;
-use PoP\CustomPosts\Routing\RouteNatures as PostRouteNatures;
+use PoP\CustomPosts\Routing\RouteNatures as CustomPostRouteNatures;
 
 class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
 {
     public function getModulesVarsPropertiesByNature()
     {
         $ret = array();
-        $ret[PostRouteNatures::POST][] = [
+        $ret[CustomPostRouteNatures::CUSTOMPOST][] = [
             'module' => [\PoP_Posts_Module_Processor_FieldDataloads::class, \PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_RELATIONALFIELDS_SINGLEPOST],
             'conditions' => [
                 'scheme' => POP_SCHEME_API,

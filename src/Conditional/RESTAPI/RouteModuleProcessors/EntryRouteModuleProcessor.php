@@ -6,7 +6,7 @@ namespace PoP\Posts\Conditional\RESTAPI\RouteModuleProcessors;
 
 use PoP\Routing\RouteNatures;
 use PoP\ComponentModel\State\ApplicationState;
-use PoP\CustomPosts\Routing\RouteNatures as PostRouteNatures;
+use PoP\CustomPosts\Routing\RouteNatures as CustomPostRouteNatures;
 use PoP\ModuleRouting\AbstractEntryRouteModuleProcessor;
 use PoP\RESTAPI\DataStructureFormatters\RESTDataStructureFormatter;
 use PoP\CustomPosts\Conditional\RESTAPI\RouteModuleProcessors\EntryRouteModuleProcessorHelpers;
@@ -17,7 +17,7 @@ class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
     {
         $ret = array();
         $vars = ApplicationState::getVars();
-        $ret[PostRouteNatures::POST][] = [
+        $ret[CustomPostRouteNatures::CUSTOMPOST][] = [
             'module' => [
                 \PoP_Posts_Module_Processor_FieldDataloads::class,
                 \PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_RELATIONALFIELDS_SINGLEPOST,
