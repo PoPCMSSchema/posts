@@ -6,7 +6,7 @@ namespace PoP\Posts\Conditional\RESTAPI\RouteModuleProcessors;
 
 use PoP\Routing\RouteNatures;
 use PoP\ComponentModel\State\ApplicationState;
-use PoP\Posts\Routing\RouteNatures as PostRouteNatures;
+use PoP\CustomPosts\Routing\RouteNatures as PostRouteNatures;
 use PoP\ModuleRouting\AbstractEntryRouteModuleProcessor;
 use PoP\RESTAPI\DataStructureFormatters\RESTDataStructureFormatter;
 use PoP\CustomPosts\Conditional\RESTAPI\RouteModuleProcessors\EntryRouteModuleProcessorHelpers;

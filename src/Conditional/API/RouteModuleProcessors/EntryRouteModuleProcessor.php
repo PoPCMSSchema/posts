@@ -6,7 +6,7 @@ namespace PoP\Posts\Conditional\API\RouteModuleProcessors;
 
 use PoP\ModuleRouting\AbstractEntryRouteModuleProcessor;
 use PoP\Routing\RouteNatures;
-use PoP\Posts\Routing\RouteNatures as PostRouteNatures;
+use PoP\CustomPosts\Routing\RouteNatures as PostRouteNatures;
 
 class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
 {
