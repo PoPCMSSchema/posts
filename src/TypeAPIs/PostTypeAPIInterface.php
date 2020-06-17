@@ -25,7 +25,27 @@ interface PostTypeAPIInterface extends CustomPostTypeAPIInterface
      * @return void
      */
     public function postExists($id): bool;
-
-    public function getPosts($query, array $options = []): array;
+    /**
+     * Get the post with provided ID or, if it doesn't exist, null
+     *
+     * @param int $id
+     * @return void
+     */
+    public function getPost($id): ?object;
+    /**
+     * Get the list of posts
+     *
+     * @param array $query
+     * @param array $options
+     * @return array
+     */
+    public function getPosts(array $query, array $options = []): array;
+    /**
+     * Get the number of posts
+     *
+     * @param array $query
+     * @param array $options
+     * @return array
+     */
     public function getPostCount(array $query = [], array $options = []): int;
 }
