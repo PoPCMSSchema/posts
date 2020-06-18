@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace PoP\Posts\TypeDataLoaders;
 
 use PoP\Posts\Facades\PostTypeAPIFacade;
-use PoP\CustomPosts\TypeDataLoaders\CustomPostTypeDataLoader;
+use PoP\CustomPosts\TypeDataLoaders\AbstractCustomPostTypeDataLoader;
 
-class PostTypeDataLoader extends CustomPostTypeDataLoader
+class PostTypeDataLoader extends AbstractCustomPostTypeDataLoader
 {
     public function getObjects(array $ids): array
     {
