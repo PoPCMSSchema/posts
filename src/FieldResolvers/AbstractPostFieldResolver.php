@@ -98,13 +98,13 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
             case 'posts':
                 return [
                     'limit' => ComponentConfiguration::getPostListDefaultLimit(),
-                    'post-status' => [
+                    'custom-post-status' => [
                         Status::PUBLISHED,
                     ],
                 ];
             case 'postCount':
                 return [
-                    'post-status' => [
+                    'custom-post-status' => [
                         Status::PUBLISHED,
                     ],
                 ];
