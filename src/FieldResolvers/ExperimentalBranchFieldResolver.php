@@ -6,11 +6,22 @@ namespace PoP\Posts\FieldResolvers;
 
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\Translation\Facades\TranslationAPIFacade;
-use PoP\Posts\FieldResolvers\PostContentFieldResolver;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
+use PoP\CustomPosts\FieldResolvers\CustomPostFieldResolver;
 
-class ExperimentalBranchFieldResolver extends PostContentFieldResolver
+class ExperimentalBranchFieldResolver extends CustomPostFieldResolver
 {
+    /**
+     * The priority with which to attach to the class. The higher the priority, the sooner it will be processed
+     * Have a higher priority than the class it extends, as to override it
+     *
+     * @return integer|null
+     */
+    public static function getPriorityToAttachClasses(): ?int
+    {
+        return 20;
+    }
+
     public function resolveCanProcess(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): bool
     {
         // Must specify fieldArg 'branch' => 'experimental'
