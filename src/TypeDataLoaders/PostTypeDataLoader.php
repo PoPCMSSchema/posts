@@ -9,14 +9,6 @@ use PoP\CustomPosts\TypeDataLoaders\CustomPostTypeDataLoader;
 
 class PostTypeDataLoader extends CustomPostTypeDataLoader
 {
-    public function getFilterDataloadingModule(): ?array
-    {
-        return [
-            \PoP_Posts_Module_Processor_FieldDataloads::class,
-            \PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_RELATIONALFIELDS_POSTLIST
-        ];
-    }
-
     public function getObjects(array $ids): array
     {
         $postTypeAPI = PostTypeAPIFacade::getInstance();
