@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace PoP\Posts\TypeResolvers;
 
-use PoP\Posts\Facades\PostTypeAPIFacade;
 use PoP\Posts\TypeDataLoaders\PostTypeDataLoader;
 use PoP\Translation\Facades\TranslationAPIFacade;
-use PoP\ComponentModel\TypeResolvers\AbstractTypeResolver;
+use PoP\CustomPosts\TypeResolvers\AbstractCustomPostTypeResolver;
 
-class PostTypeResolver extends AbstractTypeResolver
+class PostTypeResolver extends AbstractCustomPostTypeResolver
 {
     public const NAME = 'Post';
 
@@ -22,12 +21,6 @@ class PostTypeResolver extends AbstractTypeResolver
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         return $translationAPI->__('Representation of a post', 'posts');
-    }
-
-    public function getID($resultItem)
-    {
-        $postTypeAPI = PostTypeAPIFacade::getInstance();
-        return $postTypeAPI->getID($resultItem);
     }
 
     public function getTypeDataLoaderClass(): string
