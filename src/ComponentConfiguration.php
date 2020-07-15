@@ -12,7 +12,7 @@ class ComponentConfiguration
     use ComponentConfigurationTrait;
 
     private static $getPostListDefaultLimit;
-    // private static $getPostListMaxLimit;
+    private static $getPostListMaxLimit;
     private static $addPostTypeToCustomPostUnionTypes;
 
     public static function getPostListDefaultLimit(): ?int
@@ -33,23 +33,23 @@ class ComponentConfiguration
         return $selfProperty;
     }
 
-    // public static function getPostListMaxLimit(): ?int
-    // {
-    //     // Define properties
-    //     $envVariable = Environment::POST_LIST_MAX_LIMIT;
-    //     $selfProperty = &self::$getPostListMaxLimit;
-    //     $defaultValue = -1; // Unlimited
-    //     $callback = [EnvironmentValueHelpers::class, 'toInt'];
+    public static function getPostListMaxLimit(): ?int
+    {
+        // Define properties
+        $envVariable = Environment::POST_LIST_MAX_LIMIT;
+        $selfProperty = &self::$getPostListMaxLimit;
+        $defaultValue = -1; // Unlimited
+        $callback = [EnvironmentValueHelpers::class, 'toInt'];
 
-    //     // Initialize property from the environment/hook
-    //     self::maybeInitializeConfigurationValue(
-    //         $envVariable,
-    //         $selfProperty,
-    //         $defaultValue,
-    //         $callback
-    //     );
-    //     return $selfProperty;
-    // }
+        // Initialize property from the environment/hook
+        self::maybeInitializeConfigurationValue(
+            $envVariable,
+            $selfProperty,
+            $defaultValue,
+            $callback
+        );
+        return $selfProperty;
+    }
 
     public static function addPostTypeToCustomPostUnionTypes(): bool
     {
