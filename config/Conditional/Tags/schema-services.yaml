@@ -1,4 +1,4 @@
 services:
-    PoP\Posts\Conditional\Taxonomies\FieldResolvers\:
+    PoP\Posts\Conditional\Tags\FieldResolvers\:
         resource: '../../../src/Conditional/Taxonomies/FieldResolvers/*'
         public: true

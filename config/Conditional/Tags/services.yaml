@@ -4,14 +4,14 @@ services:
             PoP\Hooks\HooksAPIInterface: '@hooks_api'
             PoP\Translation\TranslationAPIInterface: '@translation_api'
 
-    PoP\Posts\Conditional\Taxonomies\Hooks\:
+    PoP\Posts\Conditional\Tags\Hooks\:
         resource: '../../../src/Conditional/Taxonomies/Hooks/*'
         public: true
 
-    PoP\Posts\Conditional\Taxonomies\Conditional\API\RouteModuleProcessors\:
+    PoP\Posts\Conditional\Tags\Conditional\API\RouteModuleProcessors\:
         resource: '../../../src/Conditional/Taxonomies/Conditional/API/RouteModuleProcessors/*'
         public: true
 
-    PoP\Posts\Conditional\Taxonomies\Conditional\RESTAPI\RouteModuleProcessors\:
+    PoP\Posts\Conditional\Tags\Conditional\RESTAPI\RouteModuleProcessors\:
         resource: '../../../src/Conditional/Taxonomies/Conditional/RESTAPI/RouteModuleProcessors/*'
         public: true

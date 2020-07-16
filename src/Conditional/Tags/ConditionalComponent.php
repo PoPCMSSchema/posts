@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts\Conditional\Taxonomies;
+namespace PoP\Posts\Conditional\Tags;
 
 use PoP\Posts\Component;
 use PoP\Root\Component\YAMLServicesTrait;

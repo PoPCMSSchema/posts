@@ -39,7 +39,7 @@ class Component extends AbstractComponent
         return [
             \PoP\API\Component::class,
             \PoP\RESTAPI\Component::class,
-            \PoP\Taxonomies\Component::class,
+            \PoP\Tags\Component::class,
             \PoP\Users\Component::class,
         ];
     }
@@ -74,10 +74,10 @@ class Component extends AbstractComponent
             );
         }
 
-        if (class_exists('\PoP\Taxonomies\Component')
-            && !in_array(\PoP\Taxonomies\Component::class, $skipSchemaComponentClasses)
+        if (class_exists('\PoP\Tags\Component')
+            && !in_array(\PoP\Tags\Component::class, $skipSchemaComponentClasses)
         ) {
-            \PoP\Posts\Conditional\Taxonomies\ConditionalComponent::initialize(
+            \PoP\Posts\Conditional\Tags\ConditionalComponent::initialize(
                 $configuration,
                 $skipSchema
             );
@@ -105,8 +105,8 @@ class Component extends AbstractComponent
             \PoP\Posts\Conditional\Users\ConditionalComponent::beforeBoot();
         }
 
-        if (class_exists('\PoP\Taxonomies\Component')) {
-            \PoP\Posts\Conditional\Taxonomies\ConditionalComponent::beforeBoot();
+        if (class_exists('\PoP\Tags\Component')) {
+            \PoP\Posts\Conditional\Tags\ConditionalComponent::beforeBoot();
         }
     }
 

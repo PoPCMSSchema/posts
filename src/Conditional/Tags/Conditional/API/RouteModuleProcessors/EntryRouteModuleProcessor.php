@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts\Conditional\Taxonomies\Conditional\API\RouteModuleProcessors;
+namespace PoP\Posts\Conditional\Tags\Conditional\API\RouteModuleProcessors;
 
 use PoP\ModuleRouting\AbstractEntryRouteModuleProcessor;
 use PoP\Tags\Routing\RouteNatures as TagRouteNatures;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts\Conditional\Taxonomies\Hooks;
+namespace PoP\Posts\Conditional\Tags\Hooks;
 
 use PoP\Engine\Hooks\AbstractHookSet;
 use PoP\Tags\Conditional\RESTAPI\RouteModuleProcessors\EntryRouteModuleProcessor;

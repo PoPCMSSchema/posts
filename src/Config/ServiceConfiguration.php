@@ -49,7 +49,7 @@ class ServiceConfiguration
             }
         }
 
-        if (class_exists('\PoP\Taxonomies\Component')) {
+        if (class_exists('\PoP\Tags\Component')) {
             // Load API and RESTAPI conditional classes
             if (class_exists('\PoP\API\Component') && \PoP\API\Component::isEnabled()) {
                 ContainerBuilderUtils::injectServicesIntoService(
