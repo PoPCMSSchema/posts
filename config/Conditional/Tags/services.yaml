@@ -5,13 +5,13 @@ services:
             PoP\Translation\TranslationAPIInterface: '@translation_api'
 
     PoP\Posts\Conditional\Tags\Hooks\:
-        resource: '../../../src/Conditional/Taxonomies/Hooks/*'
+        resource: '../../../src/Conditional/Tags/Hooks/*'
         public: true
 
     PoP\Posts\Conditional\Tags\Conditional\API\RouteModuleProcessors\:
-        resource: '../../../src/Conditional/Taxonomies/Conditional/API/RouteModuleProcessors/*'
+        resource: '../../../src/Conditional/Tags/Conditional/API/RouteModuleProcessors/*'
         public: true
 
     PoP\Posts\Conditional\Tags\Conditional\RESTAPI\RouteModuleProcessors\:
-        resource: '../../../src/Conditional/Taxonomies/Conditional/RESTAPI/RouteModuleProcessors/*'
+        resource: '../../../src/Conditional/Tags/Conditional/RESTAPI/RouteModuleProcessors/*'
         public: true

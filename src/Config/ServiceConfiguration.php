@@ -54,14 +54,14 @@ class ServiceConfiguration
             if (class_exists('\PoP\API\Component') && \PoP\API\Component::isEnabled()) {
                 ContainerBuilderUtils::injectServicesIntoService(
                     'route_module_processor_manager',
-                    'PoP\\Posts\\Conditional\\Taxonomies\\Conditional\\API\\RouteModuleProcessors',
+                    'PoP\\Posts\\Conditional\\Tags\\Conditional\\API\\RouteModuleProcessors',
                     'add'
                 );
             }
             if (class_exists('\PoP\RESTAPI\Component') && \PoP\RESTAPI\Component::isEnabled()) {
                 ContainerBuilderUtils::injectServicesIntoService(
                     'route_module_processor_manager',
-                    'PoP\\Posts\\Conditional\\Taxonomies\\Conditional\\RESTAPI\\RouteModuleProcessors',
+                    'PoP\\Posts\\Conditional\\Tags\\Conditional\\RESTAPI\\RouteModuleProcessors',
                     'add'
                 );
             }

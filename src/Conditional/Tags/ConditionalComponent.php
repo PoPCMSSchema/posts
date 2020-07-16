@@ -20,8 +20,8 @@ class ConditionalComponent
         bool $skipSchema = false,
         array $skipSchemaComponentClasses = []
     ): void {
-        self::initYAMLServices(Component::$COMPONENT_DIR, '/Conditional/Taxonomies');
-        self::maybeInitYAMLSchemaServices(Component::$COMPONENT_DIR, $skipSchema, '/Conditional/Taxonomies');
+        self::initYAMLServices(Component::$COMPONENT_DIR, '/Conditional/Tags');
+        self::maybeInitYAMLSchemaServices(Component::$COMPONENT_DIR, $skipSchema, '/Conditional/Tags');
     }
 
     /**

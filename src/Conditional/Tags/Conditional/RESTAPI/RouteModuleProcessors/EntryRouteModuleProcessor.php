@@ -33,7 +33,7 @@ class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
             self::$restFieldsQuery = (string) HooksAPIFacade::getInstance()->applyFilters(
                 'Tags:Posts:RESTFields',
                 str_replace(
-                    ',' . \PoP\Taxonomies\Conditional\CustomPosts\Conditional\RESTAPI\Hooks\CustomPostHooks::TAG_RESTFIELDS,
+                    ',' . \PoP\Tags\Conditional\CustomPosts\Conditional\RESTAPI\Hooks\CustomPostHooks::TAG_RESTFIELDS,
                     '',
                     EntryRouteModuleProcessorHelpers::getRESTFieldsQuery()
                 )
