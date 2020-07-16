@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace PoP\Posts\Conditional\Taxonomies\Hooks;
 
 use PoP\Engine\Hooks\AbstractHookSet;
-use PoP\Taxonomies\Conditional\RESTAPI\RouteModuleProcessors\EntryRouteModuleProcessor;
+use PoP\Tags\Conditional\RESTAPI\RouteModuleProcessors\EntryRouteModuleProcessor;
 
 class PostHooks extends AbstractHookSet
 {
