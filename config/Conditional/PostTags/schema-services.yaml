@@ -1,4 +1,0 @@
-services:
-    PoP\Posts\Conditional\PostTags\FieldResolvers\:
-        resource: '../../../src/Conditional/PostTags/FieldResolvers/*'
-        public: true

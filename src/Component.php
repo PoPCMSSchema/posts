@@ -38,7 +38,6 @@ class Component extends AbstractComponent
         return [
             \PoP\API\Component::class,
             \PoP\RESTAPI\Component::class,
-            \PoP\PostTags\Component::class,
             \PoP\Users\Component::class,
         ];
     }
@@ -73,15 +72,6 @@ class Component extends AbstractComponent
             );
         }
 
-        if (class_exists('\PoP\PostTags\Component')
-            && !in_array(\PoP\PostTags\Component::class, $skipSchemaComponentClasses)
-        ) {
-            \PoP\Posts\Conditional\PostTags\ConditionalComponent::initialize(
-                $configuration,
-                $skipSchema
-            );
-        }
-
         // Initialize at the end
         ServiceConfiguration::initialize();
     }
@@ -102,10 +92,6 @@ class Component extends AbstractComponent
 
         if (class_exists('\PoP\Users\Component')) {
             \PoP\Posts\Conditional\Users\ConditionalComponent::beforeBoot();
-        }
-
-        if (class_exists('\PoP\PostTags\Component')) {
-            \PoP\Posts\Conditional\PostTags\ConditionalComponent::beforeBoot();
         }
     }
 

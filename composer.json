@@ -25,7 +25,6 @@
     "require-dev": {
         "getpop/api": "dev-master",
         "getpop/api-rest": "dev-master",
-        "getpop/post-tags": "dev-master",
         "getpop/users": "dev-master",
         "phpstan/phpstan": "^0.12",
         "phpunit/phpunit": ">=7.0",
@@ -34,7 +33,6 @@
     "suggest": {
         "getpop/api": "Integrates well with API",
         "getpop/api-rest": "Integrates well with REST API",
-        "getpop/post-tags": "Integrates well with Post Tags",
         "getpop/users": "Integrates well with Users"
     },
     "autoload": {
