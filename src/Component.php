@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace PoP\Posts;
 
-use PoP\Posts\Environment;
 use PoP\Root\Component\AbstractComponent;
 use PoP\Root\Component\YAMLServicesTrait;
 use PoP\Posts\Config\ServiceConfiguration;
@@ -39,7 +38,7 @@ class Component extends AbstractComponent
         return [
             \PoP\API\Component::class,
             \PoP\RESTAPI\Component::class,
-            \PoP\Tags\Component::class,
+            \PoP\PostTags\Component::class,
             \PoP\Users\Component::class,
         ];
     }
@@ -74,10 +73,10 @@ class Component extends AbstractComponent
             );
         }
 
-        if (class_exists('\PoP\Tags\Component')
-            && !in_array(\PoP\Tags\Component::class, $skipSchemaComponentClasses)
+        if (class_exists('\PoP\PostTags\Component')
+            && !in_array(\PoP\PostTags\Component::class, $skipSchemaComponentClasses)
         ) {
-            \PoP\Posts\Conditional\Tags\ConditionalComponent::initialize(
+            \PoP\Posts\Conditional\PostTags\ConditionalComponent::initialize(
                 $configuration,
                 $skipSchema
             );
@@ -105,8 +104,8 @@ class Component extends AbstractComponent
             \PoP\Posts\Conditional\Users\ConditionalComponent::beforeBoot();
         }
 
-        if (class_exists('\PoP\Tags\Component')) {
-            \PoP\Posts\Conditional\Tags\ConditionalComponent::beforeBoot();
+        if (class_exists('\PoP\PostTags\Component')) {
+            \PoP\Posts\Conditional\PostTags\ConditionalComponent::beforeBoot();
         }
     }
 

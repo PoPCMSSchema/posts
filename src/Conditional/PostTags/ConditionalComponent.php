@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts\Conditional\Tags;
+namespace PoP\Posts\Conditional\PostTags;
 
 use PoP\Posts\Component;
 use PoP\Root\Component\YAMLServicesTrait;
@@ -20,8 +20,8 @@ class ConditionalComponent
         bool $skipSchema = false,
         array $skipSchemaComponentClasses = []
     ): void {
-        self::initYAMLServices(Component::$COMPONENT_DIR, '/Conditional/Tags');
-        self::maybeInitYAMLSchemaServices(Component::$COMPONENT_DIR, $skipSchema, '/Conditional/Tags');
+        self::initYAMLServices(Component::$COMPONENT_DIR, '/Conditional/PostTags');
+        self::maybeInitYAMLSchemaServices(Component::$COMPONENT_DIR, $skipSchema, '/Conditional/PostTags');
     }
 
     /**

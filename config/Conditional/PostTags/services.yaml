@@ -1,0 +1,17 @@
+services:
+    _defaults:
+        bind:
+            PoP\Hooks\HooksAPIInterface: '@hooks_api'
+            PoP\Translation\TranslationAPIInterface: '@translation_api'
+
+    PoP\Posts\Conditional\PostTags\Hooks\:
+        resource: '../../../src/Conditional/PostTags/Hooks/*'
+        public: true
+
+    PoP\Posts\Conditional\PostTags\Conditional\API\RouteModuleProcessors\:
+        resource: '../../../src/Conditional/PostTags/Conditional/API/RouteModuleProcessors/*'
+        public: true
+
+    PoP\Posts\Conditional\PostTags\Conditional\RESTAPI\RouteModuleProcessors\:
+        resource: '../../../src/Conditional/PostTags/Conditional/RESTAPI/RouteModuleProcessors/*'
+        public: true

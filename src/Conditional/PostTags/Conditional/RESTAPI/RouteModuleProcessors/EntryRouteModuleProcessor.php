@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts\Conditional\Tags\Conditional\RESTAPI\RouteModuleProcessors;
+namespace PoP\Posts\Conditional\PostTags\Conditional\RESTAPI\RouteModuleProcessors;
 
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\API\Facades\FieldQueryConvertorFacade;
