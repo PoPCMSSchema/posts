@@ -29,7 +29,7 @@ class EntryRouteModuleProcessorHelpers
         if (is_null(self::$restFieldsQuery)) {
             self::$restFieldsQuery = (string) HooksAPIFacade::getInstance()->applyFilters(
                 self::HOOK_REST_FIELDS,
-                \PoP\CustomPosts\Conditional\RESTAPI\RouteModuleProcessorHelpers\EntryRouteModuleProcessorHelpers::getRESTFields()
+                \PoP\CustomPosts\Conditional\RESTAPI\RouteModuleProcessorHelpers\EntryRouteModuleProcessorHelpers::getRESTFieldsQuery()
             );
         }
         return self::$restFieldsQuery;
