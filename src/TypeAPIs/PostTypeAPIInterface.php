@@ -31,7 +31,7 @@ interface PostTypeAPIInterface extends CustomPostTypeAPIInterface
      * @param int $id
      * @return void
      */
-    public function getPost($id): ?object;
+    public function getPost($id);
     /**
      * Get the list of posts
      *
