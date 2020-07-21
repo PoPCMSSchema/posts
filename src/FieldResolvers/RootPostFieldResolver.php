@@ -80,7 +80,7 @@ class RootPostFieldResolver extends AbstractPostFieldResolver
                     ],
                 ];
                 $options = [
-                    'return-type' => POP_RETURNTYPE_IDS,
+                    'return-type' => \POP_RETURNTYPE_IDS,
                 ];
                 if ($posts = $postTypeAPI->getPosts($query, $options)) {
                     return $posts[0];

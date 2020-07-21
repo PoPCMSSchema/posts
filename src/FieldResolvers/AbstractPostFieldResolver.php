@@ -119,7 +119,7 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
             case 'posts':
                 $query = $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs);
                 $options = [
-                    'return-type' => POP_RETURNTYPE_IDS,
+                    'return-type' => \POP_RETURNTYPE_IDS,
                 ];
                 $this->addFilterDataloadQueryArgs($options, $typeResolver, $fieldName, $fieldArgs);
                 return $postTypeAPI->getPosts($query, $options);
