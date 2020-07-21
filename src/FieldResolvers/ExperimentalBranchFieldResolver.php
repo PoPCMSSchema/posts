@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PoP\Posts\FieldResolvers;
 
+use PoP\Posts\TypeResolvers\PostTypeResolver;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
@@ -11,6 +12,18 @@ use PoP\CustomPosts\FieldResolvers\CustomPostFieldResolver;
 
 class ExperimentalBranchFieldResolver extends CustomPostFieldResolver
 {
+    /**
+     * Attach to Posts only
+     *
+     * @return array
+     */
+    public static function getClassesToAttachTo(): array
+    {
+        return [
+            PostTypeResolver::class,
+        ];
+    }
+
     /**
      * The priority with which to attach to the class. The higher the priority, the sooner it will be processed
      * Have a higher priority than the class it extends, as to override it
