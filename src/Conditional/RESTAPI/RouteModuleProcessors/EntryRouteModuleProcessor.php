@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts\Conditional\RESTAPI\RouteModuleProcessors;
+namespace PoPSchema\Posts\Conditional\RESTAPI\RouteModuleProcessors;
 
 use PoP\Routing\RouteNatures;
 use PoP\ComponentModel\State\ApplicationState;
-use PoP\CustomPosts\Routing\RouteNatures as CustomPostRouteNatures;
+use PoPSchema\CustomPosts\Routing\RouteNatures as CustomPostRouteNatures;
 use PoP\ModuleRouting\AbstractEntryRouteModuleProcessor;
 use PoP\RESTAPI\DataStructureFormatters\RESTDataStructureFormatter;
-use PoP\Posts\Conditional\RESTAPI\RouteModuleProcessorHelpers\EntryRouteModuleProcessorHelpers;
+use PoPSchema\Posts\Conditional\RESTAPI\RouteModuleProcessorHelpers\EntryRouteModuleProcessorHelpers;
 
 class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
 {

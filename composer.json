@@ -1,5 +1,5 @@
 {
-    "name": "getpop/posts",
+    "name": "pop-schema/posts",
     "type": "library",
     "description": "Adds support for posts",
     "keywords": [
@@ -19,13 +19,13 @@
     "prefer-stable": true,
     "require": {
         "php": "~7.2",
-        "getpop/customposts": "dev-master",
-        "getpop/migrate-posts": "dev-master"
+        "pop-schema/customposts": "dev-master",
+        "pop-schema/migrate-posts": "dev-master"
     },
     "require-dev": {
         "getpop/api": "dev-master",
         "getpop/api-rest": "dev-master",
-        "getpop/users": "dev-master",
+        "pop-schema/users": "dev-master",
         "phpstan/phpstan": "^0.12",
         "phpunit/phpunit": ">=8.5",
         "squizlabs/php_codesniffer": "^3.0"
@@ -33,16 +33,16 @@
     "suggest": {
         "getpop/api": "Integrates well with API",
         "getpop/api-rest": "Integrates well with REST API",
-        "getpop/users": "Integrates well with Users"
+        "pop-schema/users": "Integrates well with Users"
     },
     "autoload": {
         "psr-4": {
-            "PoP\\Posts\\": "src"
+            "PoPSchema\\Posts\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PoP\\Posts\\": "tests"
+            "PoPSchema\\Posts\\": "tests"
         }
     },
     "scripts": {

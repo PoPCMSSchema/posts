@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts\Conditional\Users\Conditional\RESTAPI\RouteModuleProcessors;
+namespace PoPSchema\Posts\Conditional\Users\Conditional\RESTAPI\RouteModuleProcessors;
 
 use PoP\ModuleRouting\AbstractEntryRouteModuleProcessor;
 use PoP\ComponentModel\State\ApplicationState;
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\API\Facades\FieldQueryConvertorFacade;
-use PoP\Users\Routing\RouteNatures;
+use PoPSchema\Users\Routing\RouteNatures;
 use PoP\RESTAPI\DataStructureFormatters\RESTDataStructureFormatter;
-use PoP\CustomPosts\Conditional\RESTAPI\RouteModuleProcessorHelpers\EntryRouteModuleProcessorHelpers;
+use PoPSchema\CustomPosts\Conditional\RESTAPI\RouteModuleProcessorHelpers\EntryRouteModuleProcessorHelpers;
 
 class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
 {
@@ -35,7 +35,7 @@ class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
             self::$restFieldsQuery = (string) HooksAPIFacade::getInstance()->applyFilters(
                 'Users:Posts:RESTFields',
                 str_replace(
-                    ',' . \PoP\Users\Conditional\CustomPosts\Conditional\RESTAPI\Hooks\CustomPostHooks::AUTHOR_RESTFIELDS,
+                    ',' . \PoPSchema\Users\Conditional\CustomPosts\Conditional\RESTAPI\Hooks\CustomPostHooks::AUTHOR_RESTFIELDS,
                     '',
                     EntryRouteModuleProcessorHelpers::getRESTFieldsQuery()
                 )

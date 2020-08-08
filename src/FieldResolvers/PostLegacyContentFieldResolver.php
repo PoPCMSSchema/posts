@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts\FieldResolvers;
+namespace PoPSchema\Posts\FieldResolvers;
 
-use PoP\CustomPosts\Facades\CustomPostTypeAPIFacade;
-use PoP\Posts\TypeResolvers\PostTypeResolver;
+use PoPSchema\CustomPosts\Facades\CustomPostTypeAPIFacade;
+use PoPSchema\Posts\TypeResolvers\PostTypeResolver;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
-use PoP\CustomPosts\Types\Status;
+use PoPSchema\CustomPosts\Types\Status;
 
 class PostLegacyContentFieldResolver extends AbstractDBDataFieldResolver
 {

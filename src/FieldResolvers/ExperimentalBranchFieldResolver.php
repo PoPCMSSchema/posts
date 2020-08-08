@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts\FieldResolvers;
+namespace PoPSchema\Posts\FieldResolvers;
 
-use PoP\Posts\TypeResolvers\PostTypeResolver;
+use PoPSchema\Posts\TypeResolvers\PostTypeResolver;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
-use PoP\CustomPosts\FieldResolvers\CustomPostFieldResolver;
+use PoPSchema\CustomPosts\FieldResolvers\CustomPostFieldResolver;
 
 class ExperimentalBranchFieldResolver extends CustomPostFieldResolver
 {

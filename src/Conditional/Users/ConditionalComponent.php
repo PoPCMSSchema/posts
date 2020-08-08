@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts\Conditional\Users;
+namespace PoPSchema\Posts\Conditional\Users;
 
-use PoP\Posts\Component;
+use PoPSchema\Posts\Component;
 use PoP\Root\Component\YAMLServicesTrait;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 

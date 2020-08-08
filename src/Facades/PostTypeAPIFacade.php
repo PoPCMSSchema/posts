@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts\Facades;
+namespace PoPSchema\Posts\Facades;
 
-use PoP\Posts\TypeAPIs\PostTypeAPIInterface;
+use PoPSchema\Posts\TypeAPIs\PostTypeAPIInterface;
 use PoP\Root\Container\ContainerBuilderFactory;
 
 class PostTypeAPIFacade

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts\FieldResolvers;
+namespace PoPSchema\Posts\FieldResolvers;
 
 use PoP\Engine\TypeResolvers\RootTypeResolver;
-use PoP\Posts\FieldResolvers\AbstractPostFieldResolver;
+use PoPSchema\Posts\FieldResolvers\AbstractPostFieldResolver;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
-use PoP\Posts\TypeResolvers\PostTypeResolver;
-use PoP\Posts\Facades\PostTypeAPIFacade;
-use PoP\CustomPosts\Types\Status;
+use PoPSchema\Posts\TypeResolvers\PostTypeResolver;
+use PoPSchema\Posts\Facades\PostTypeAPIFacade;
+use PoPSchema\CustomPosts\Types\Status;
 
 class RootPostFieldResolver extends AbstractPostFieldResolver
 {

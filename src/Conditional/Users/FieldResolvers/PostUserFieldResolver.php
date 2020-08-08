@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts\Conditional\Users\FieldResolvers;
+namespace PoPSchema\Posts\Conditional\Users\FieldResolvers;
 
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
-use PoP\Posts\FieldResolvers\AbstractPostFieldResolver;
-use PoP\Users\TypeResolvers\UserTypeResolver;
+use PoPSchema\Posts\FieldResolvers\AbstractPostFieldResolver;
+use PoPSchema\Users\TypeResolvers\UserTypeResolver;
 
 class PostUserFieldResolver extends AbstractPostFieldResolver
 {

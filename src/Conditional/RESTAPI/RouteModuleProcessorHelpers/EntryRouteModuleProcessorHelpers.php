@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts\Conditional\RESTAPI\RouteModuleProcessorHelpers;
+namespace PoPSchema\Posts\Conditional\RESTAPI\RouteModuleProcessorHelpers;
 
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\API\Facades\FieldQueryConvertorFacade;
@@ -31,7 +31,7 @@ class EntryRouteModuleProcessorHelpers
         if (is_null(self::$restFieldsQuery)) {
             self::$restFieldsQuery = (string) HooksAPIFacade::getInstance()->applyFilters(
                 self::HOOK_REST_FIELDS,
-                \PoP\CustomPosts\Conditional\RESTAPI\RouteModuleProcessorHelpers\EntryRouteModuleProcessorHelpers::getRESTFieldsQuery()
+                \PoPSchema\CustomPosts\Conditional\RESTAPI\RouteModuleProcessorHelpers\EntryRouteModuleProcessorHelpers::getRESTFieldsQuery()
             );
         }
         return self::$restFieldsQuery;

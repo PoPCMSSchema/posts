@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts\TypeResolvers;
+namespace PoPSchema\Posts\TypeResolvers;
 
-use PoP\Posts\TypeDataLoaders\PostTypeDataLoader;
+use PoPSchema\Posts\TypeDataLoaders\PostTypeDataLoader;
 use PoP\Translation\Facades\TranslationAPIFacade;
-use PoP\CustomPosts\TypeResolvers\AbstractCustomPostTypeResolver;
+use PoPSchema\CustomPosts\TypeResolvers\AbstractCustomPostTypeResolver;
 
 class PostTypeResolver extends AbstractCustomPostTypeResolver
 {

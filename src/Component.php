@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts;
+namespace PoPSchema\Posts;
 
 use PoP\Root\Component\AbstractComponent;
 use PoP\Root\Component\YAMLServicesTrait;
-use PoP\Posts\Config\ServiceConfiguration;
+use PoPSchema\Posts\Config\ServiceConfiguration;
 use PoP\ComponentModel\Container\ContainerBuilderUtils;
 use PoP\ComponentModel\AttachableExtensions\AttachableExtensionGroups;
-use PoP\Posts\TypeResolverPickers\Optional\PostCustomPostTypeResolverPicker;
+use PoPSchema\Posts\TypeResolverPickers\Optional\PostCustomPostTypeResolverPicker;
 
 /**
  * Initialize component
@@ -24,7 +24,7 @@ class Component extends AbstractComponent
     public static function getDependedComponentClasses(): array
     {
         return [
-            \PoP\CustomPosts\Component::class,
+            \PoPSchema\CustomPosts\Component::class,
         ];
     }
 
@@ -38,7 +38,7 @@ class Component extends AbstractComponent
         return [
             \PoP\API\Component::class,
             \PoP\RESTAPI\Component::class,
-            \PoP\Users\Component::class,
+            \PoPSchema\Users\Component::class,
         ];
     }
 
@@ -63,10 +63,10 @@ class Component extends AbstractComponent
         self::initYAMLServices(self::$COMPONENT_DIR);
         self::maybeInitYAMLSchemaServices(self::$COMPONENT_DIR, $skipSchema);
 
-        if (class_exists('\PoP\Users\Component')
-            && !in_array(\PoP\Users\Component::class, $skipSchemaComponentClasses)
+        if (class_exists('\PoPSchema\Users\Component')
+            && !in_array(\PoPSchema\Users\Component::class, $skipSchemaComponentClasses)
         ) {
-            \PoP\Posts\Conditional\Users\ConditionalComponent::initialize(
+            \PoPSchema\Posts\Conditional\Users\ConditionalComponent::initialize(
                 $configuration,
                 $skipSchema
             );
@@ -90,8 +90,8 @@ class Component extends AbstractComponent
         ContainerBuilderUtils::attachFieldResolversFromNamespace(__NAMESPACE__ . '\\FieldResolvers');
         self::attachTypeResolverPickers();
 
-        if (class_exists('\PoP\Users\Component')) {
-            \PoP\Posts\Conditional\Users\ConditionalComponent::beforeBoot();
+        if (class_exists('\PoPSchema\Users\Component')) {
+            \PoPSchema\Posts\Conditional\Users\ConditionalComponent::beforeBoot();
         }
     }
 

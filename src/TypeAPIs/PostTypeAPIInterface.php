@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PoP\Posts\TypeAPIs;
+namespace PoPSchema\Posts\TypeAPIs;
 
-use PoP\CustomPosts\TypeAPIs\CustomPostTypeAPIInterface;
+use PoPSchema\CustomPosts\TypeAPIs\CustomPostTypeAPIInterface;
 
 /**
  * Methods to interact with the Type, to be implemented by the underlying CMS
