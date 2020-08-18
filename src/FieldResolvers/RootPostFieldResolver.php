@@ -12,6 +12,7 @@ use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoPSchema\Posts\TypeResolvers\PostTypeResolver;
 use PoPSchema\Posts\Facades\PostTypeAPIFacade;
 use PoPSchema\CustomPosts\Types\Status;
+use PoPSchema\SchemaCommons\DataLoading\ReturnTypes;
 
 class RootPostFieldResolver extends AbstractPostFieldResolver
 {
@@ -80,7 +81,7 @@ class RootPostFieldResolver extends AbstractPostFieldResolver
                     ],
                 ];
                 $options = [
-                    'return-type' => \POP_RETURNTYPE_IDS,
+                    'return-type' => ReturnTypes::IDS,
                 ];
                 if ($posts = $postTypeAPI->getPosts($query, $options)) {
                     return $posts[0];
