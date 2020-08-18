@@ -6,6 +6,7 @@ namespace PoPSchema\Posts\Conditional\Users\Conditional\API\RouteModuleProcessor
 
 use PoP\ModuleRouting\AbstractEntryRouteModuleProcessor;
 use PoPSchema\Users\Routing\RouteNatures;
+use PoP\API\Response\Schemes as APISchemes;
 
 class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
 {
@@ -24,7 +25,7 @@ class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
             $ret[RouteNatures::USER][$route][] = [
                 'module' => $module,
                 'conditions' => [
-                    'scheme' => POP_SCHEME_API,
+                    'scheme' => APISchemes::API,
                 ],
             ];
         }

@@ -10,6 +10,7 @@ use PoPSchema\CustomPosts\Routing\RouteNatures as CustomPostRouteNatures;
 use PoP\ModuleRouting\AbstractEntryRouteModuleProcessor;
 use PoP\RESTAPI\DataStructureFormatters\RESTDataStructureFormatter;
 use PoPSchema\Posts\Conditional\RESTAPI\RouteModuleProcessorHelpers\EntryRouteModuleProcessorHelpers;
+use PoP\API\Response\Schemes as APISchemes;
 
 class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
 {
@@ -28,7 +29,7 @@ class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
                     ]
                 ],
             'conditions' => [
-                'scheme' => POP_SCHEME_API,
+                'scheme' => APISchemes::API,
                 'datastructure' => RESTDataStructureFormatter::getName(),
             ],
         ];
@@ -55,7 +56,7 @@ class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
             $ret[RouteNatures::STANDARD][$route][] = [
                 'module' => $module,
                 'conditions' => [
-                    'scheme' => POP_SCHEME_API,
+                    'scheme' => APISchemes::API,
                     'datastructure' => RESTDataStructureFormatter::getName(),
                 ],
             ];

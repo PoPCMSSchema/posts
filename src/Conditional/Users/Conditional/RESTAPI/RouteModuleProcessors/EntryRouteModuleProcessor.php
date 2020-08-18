@@ -11,6 +11,7 @@ use PoP\API\Facades\FieldQueryConvertorFacade;
 use PoPSchema\Users\Routing\RouteNatures;
 use PoP\RESTAPI\DataStructureFormatters\RESTDataStructureFormatter;
 use PoPSchema\CustomPosts\Conditional\RESTAPI\RouteModuleProcessorHelpers\EntryRouteModuleProcessorHelpers;
+use PoP\API\Response\Schemes as APISchemes;
 
 class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
 {
@@ -64,7 +65,7 @@ class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
             $ret[RouteNatures::USER][$route][] = [
                 'module' => $module,
                 'conditions' => [
-                    'scheme' => POP_SCHEME_API,
+                    'scheme' => APISchemes::API,
                     'datastructure' => RESTDataStructureFormatter::getName(),
                 ],
             ];
