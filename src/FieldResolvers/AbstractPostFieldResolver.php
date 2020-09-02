@@ -93,8 +93,16 @@ abstract class AbstractPostFieldResolver extends AbstractQueryableFieldResolver
         return parent::getFieldDefaultFilterDataloadingModule($typeResolver, $fieldName, $fieldArgs);
     }
 
-    protected function getQuery(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = []): array
-    {
+    /**
+     * @param array<string, mixed> $fieldArgs
+     * @return array<string, mixed>
+     */
+    protected function getQuery(
+        TypeResolverInterface $typeResolver,
+        object $resultItem,
+        string $fieldName,
+        array $fieldArgs = []
+    ): array {
         switch ($fieldName) {
             case 'posts':
                 return [
