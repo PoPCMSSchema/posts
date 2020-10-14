@@ -14,7 +14,7 @@ class PostTypeAPIFacade
         /**
          * @var PostTypeAPIInterface
          */
-        $service = ContainerBuilderFactory::getInstance()->get('post_type_api');
+        $service = ContainerBuilderFactory::getInstance()->get(PostTypeAPIInterface::class);
         return $service;
     }
 }
