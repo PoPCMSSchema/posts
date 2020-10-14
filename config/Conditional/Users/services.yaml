@@ -1,17 +1,13 @@
 services:
     _defaults:
-        bind:
-            PoP\Hooks\HooksAPIInterface: '@hooks_api'
-            PoP\Translation\TranslationAPIInterface: '@translation_api'
+        public: true
+        autowire: true
 
     PoPSchema\Posts\Conditional\Users\Hooks\:
         resource: '../../../src/Conditional/Users/Hooks/*'
-        public: true
 
     PoPSchema\Posts\Conditional\Users\Conditional\API\RouteModuleProcessors\:
         resource: '../../../src/Conditional/Users/Conditional/API/RouteModuleProcessors/*'
-        public: true
 
     PoPSchema\Posts\Conditional\Users\Conditional\RESTAPI\RouteModuleProcessors\:
         resource: '../../../src/Conditional/Users/Conditional/RESTAPI/RouteModuleProcessors/*'
-        public: true
