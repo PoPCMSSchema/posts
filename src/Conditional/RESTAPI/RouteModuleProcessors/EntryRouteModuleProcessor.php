@@ -14,7 +14,10 @@ use PoP\API\Response\Schemes as APISchemes;
 
 class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
 {
-    public function getModulesVarsPropertiesByNature()
+    /**
+     * @return array<string, array<array>>
+     */
+    public function getModulesVarsPropertiesByNature(): array
     {
         $ret = array();
         $vars = ApplicationState::getVars();
@@ -37,7 +40,10 @@ class EntryRouteModuleProcessor extends AbstractEntryRouteModuleProcessor
         return $ret;
     }
 
-    public function getModulesVarsPropertiesByNatureAndRoute()
+    /**
+     * @return array<string, array<string, array<array>>>
+     */
+    public function getModulesVarsPropertiesByNatureAndRoute(): array
     {
         $ret = array();
         $vars = ApplicationState::getVars();
