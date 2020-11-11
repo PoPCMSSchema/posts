@@ -90,7 +90,7 @@ class RootPostFieldResolver extends AbstractPostFieldResolver
             case 'post':
                 $query = [
                     'include' => [$fieldArgs['id']],
-                    'custom-post-status' => [
+                    'status' => [
                         Status::PUBLISHED,
                     ],
                 ];
