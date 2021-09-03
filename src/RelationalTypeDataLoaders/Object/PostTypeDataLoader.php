@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PoPSchema\Posts\TypeDataLoaders;
+namespace PoPSchema\Posts\RelationalTypeDataLoaders\Object;
 
-use PoPSchema\CustomPosts\TypeDataLoaders\AbstractCustomPostTypeDataLoader;
+use PoPSchema\CustomPosts\RelationalTypeDataLoaders\Object\AbstractCustomPostTypeDataLoader;
 use PoPSchema\Posts\Facades\PostTypeAPIFacade;
 
 class PostTypeDataLoader extends AbstractCustomPostTypeDataLoader
