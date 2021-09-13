@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PoPSchema\Posts\ConditionalOnComponent\Users\FieldResolvers;
+namespace PoPSchema\Posts\ConditionalOnComponent\Users\FieldResolvers\ObjectType;
 
 use PoP\ComponentModel\TypeResolvers\ObjectType\ObjectTypeResolverInterface;
-use PoPSchema\Posts\FieldResolvers\AbstractPostFieldResolver;
+use PoPSchema\Posts\FieldResolvers\ObjectType\AbstractPostFieldResolver;
 use PoPSchema\Users\TypeResolvers\ObjectType\UserTypeResolver;
 
 class PostUserFieldResolver extends AbstractPostFieldResolver
