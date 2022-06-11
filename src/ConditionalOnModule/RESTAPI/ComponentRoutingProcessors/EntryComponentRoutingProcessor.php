@@ -4,35 +4,36 @@ declare(strict_types=1);
 
 namespace PoPCMSSchema\Posts\ConditionalOnModule\RESTAPI\ComponentRoutingProcessors;
 
-use PoP\Root\App;
-use PoPAPI\API\Response\Schemes as APISchemes;
+use PoP\ComponentModel\Component\Component;
 use PoP\ComponentModel\Module as ComponentModelModule;
 use PoP\ComponentModel\ModuleConfiguration as ComponentModelModuleConfiguration;
+use PoP\Root\App;
 use PoP\Root\Routing\RequestNature;
+use PoPAPI\API\Response\Schemes as APISchemes;
 use PoPCMSSchema\CustomPosts\ConditionalOnModule\RESTAPI\ComponentRoutingProcessors\AbstractCustomPostRESTEntryComponentRoutingProcessor;
 use PoPCMSSchema\CustomPosts\Routing\RequestNature as CustomPostRequestNature;
+use PoPCMSSchema\Posts\ConditionalOnModule\API\ComponentProcessors\FieldDataloadComponentProcessor;
 use PoPCMSSchema\Posts\Module;
 use PoPCMSSchema\Posts\ModuleConfiguration;
-use PoPCMSSchema\Posts\ConditionalOnModule\API\ModuleProcessors\FieldDataloadModuleProcessor;
 
 class EntryComponentRoutingProcessor extends AbstractCustomPostRESTEntryComponentRoutingProcessor
 {
     /**
-     * @return array<string, array<array>>
+     * @return array<string,array<array<string,mixed>>>
      */
     public function getStatePropertiesToSelectComponentByNature(): array
     {
         $ret = array();
         $ret[CustomPostRequestNature::CUSTOMPOST][] = [
-            'component' => [
-                FieldDataloadModuleProcessor::class,
-                FieldDataloadModuleProcessor::MODULE_DATALOAD_RELATIONALFIELDS_SINGLEPOST,
+            'component' => new Component(
+                FieldDataloadComponentProcessor::class,
+                FieldDataloadComponentProcessor::COMPONENT_DATALOAD_RELATIONALFIELDS_SINGLEPOST,
                 [
-                    'fields' => !empty(App::getState('query')) ?
-                        App::getState('query') :
-                        $this->getRESTFields()
+                    'fields' => !empty(App::getState('query'))
+                        ? App::getState('query')
+                        : $this->getRESTFields()
                     ]
-                ],
+            ),
             'conditions' => [
                 'scheme' => APISchemes::API,
                 'datastructure' => $this->getRestDataStructureFormatter()->getName(),
@@ -43,7 +44,7 @@ class EntryComponentRoutingProcessor extends AbstractCustomPostRESTEntryComponen
     }
 
     /**
-     * @return array<string, array<string, array<array>>>
+     * @return array<string,array<string,array<array<string,mixed>>>>
      */
     public function getStatePropertiesToSelectComponentByNatureAndRoute(): array
     {
@@ -54,14 +55,14 @@ class EntryComponentRoutingProcessor extends AbstractCustomPostRESTEntryComponen
         $componentModelModuleConfiguration = App::getModule(ComponentModelModule::class)->getConfiguration();
         $routeComponents = array(
             $moduleConfiguration->getPostsRoute() => [
-                FieldDataloadModuleProcessor::class,
+                FieldDataloadComponentProcessor::class,
                 $componentModelModuleConfiguration->enableAdminSchema() ?
-                    FieldDataloadModuleProcessor::MODULE_DATALOAD_RELATIONALFIELDS_ADMINPOSTLIST
-                    : FieldDataloadModuleProcessor::MODULE_DATALOAD_RELATIONALFIELDS_POSTLIST,
+                    FieldDataloadComponentProcessor::COMPONENT_DATALOAD_RELATIONALFIELDS_ADMINPOSTLIST
+                    : FieldDataloadComponentProcessor::COMPONENT_DATALOAD_RELATIONALFIELDS_POSTLIST,
                 [
-                    'fields' => !empty(App::getState('query')) ?
-                        App::getState('query') :
-                        $this->getRESTFields()
+                    'fields' => !empty(App::getState('query'))
+                        ? App::getState('query')
+                        : $this->getRESTFields()
                     ]
                 ],
         );
