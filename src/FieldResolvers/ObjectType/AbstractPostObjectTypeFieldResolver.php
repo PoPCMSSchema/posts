@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PoPCMSSchema\Posts\FieldResolvers\ObjectType;
 
+use PoP\ComponentModel\TypeResolvers\InputTypeResolverInterface;
 use PoP\ComponentModel\QueryResolution\FieldDataAccessorInterface;
 use PoP\ComponentModel\Feedback\ObjectTypeFieldResolutionFeedbackStore;
 use PoP\ComponentModel\FieldResolvers\ObjectType\AbstractQueryableObjectTypeFieldResolver;
@@ -37,6 +38,7 @@ abstract class AbstractPostObjectTypeFieldResolver extends AbstractQueryableObje
     }
     final protected function getRootPostsFilterInputObjectTypeResolver(): RootPostsFilterInputObjectTypeResolver
     {
+        /** @var RootPostsFilterInputObjectTypeResolver */
         return $this->rootPostsFilterInputObjectTypeResolver ??= $this->instanceManager->getInstance(RootPostsFilterInputObjectTypeResolver::class);
     }
     final public function setPostPaginationInputObjectTypeResolver(PostPaginationInputObjectTypeResolver $postPaginationInputObjectTypeResolver): void
@@ -45,6 +47,7 @@ abstract class AbstractPostObjectTypeFieldResolver extends AbstractQueryableObje
     }
     final protected function getPostPaginationInputObjectTypeResolver(): PostPaginationInputObjectTypeResolver
     {
+        /** @var PostPaginationInputObjectTypeResolver */
         return $this->postPaginationInputObjectTypeResolver ??= $this->instanceManager->getInstance(PostPaginationInputObjectTypeResolver::class);
     }
     final public function setCustomPostSortInputObjectTypeResolver(CustomPostSortInputObjectTypeResolver $customPostSortInputObjectTypeResolver): void
@@ -53,6 +56,7 @@ abstract class AbstractPostObjectTypeFieldResolver extends AbstractQueryableObje
     }
     final protected function getCustomPostSortInputObjectTypeResolver(): CustomPostSortInputObjectTypeResolver
     {
+        /** @var CustomPostSortInputObjectTypeResolver */
         return $this->customPostSortInputObjectTypeResolver ??= $this->instanceManager->getInstance(CustomPostSortInputObjectTypeResolver::class);
     }
     final public function setIntScalarTypeResolver(IntScalarTypeResolver $intScalarTypeResolver): void
@@ -61,6 +65,7 @@ abstract class AbstractPostObjectTypeFieldResolver extends AbstractQueryableObje
     }
     final protected function getIntScalarTypeResolver(): IntScalarTypeResolver
     {
+        /** @var IntScalarTypeResolver */
         return $this->intScalarTypeResolver ??= $this->instanceManager->getInstance(IntScalarTypeResolver::class);
     }
     final public function setPostObjectTypeResolver(PostObjectTypeResolver $postObjectTypeResolver): void
@@ -69,6 +74,7 @@ abstract class AbstractPostObjectTypeFieldResolver extends AbstractQueryableObje
     }
     final protected function getPostObjectTypeResolver(): PostObjectTypeResolver
     {
+        /** @var PostObjectTypeResolver */
         return $this->postObjectTypeResolver ??= $this->instanceManager->getInstance(PostObjectTypeResolver::class);
     }
     final public function setPostTypeAPI(PostTypeAPIInterface $postTypeAPI): void
@@ -77,9 +83,13 @@ abstract class AbstractPostObjectTypeFieldResolver extends AbstractQueryableObje
     }
     final protected function getPostTypeAPI(): PostTypeAPIInterface
     {
+        /** @var PostTypeAPIInterface */
         return $this->postTypeAPI ??= $this->instanceManager->getInstance(PostTypeAPIInterface::class);
     }
 
+    /**
+     * @return string[]
+     */
     public function getFieldNamesToResolve(): array
     {
         return [
@@ -115,6 +125,9 @@ abstract class AbstractPostObjectTypeFieldResolver extends AbstractQueryableObje
         };
     }
 
+    /**
+     * @return array<string, InputTypeResolverInterface>
+     */
     public function getFieldArgNameTypeResolvers(ObjectTypeResolverInterface $objectTypeResolver, string $fieldName): array
     {
         $fieldArgNameTypeResolvers = parent::getFieldArgNameTypeResolvers($objectTypeResolver, $fieldName);
@@ -138,7 +151,7 @@ abstract class AbstractPostObjectTypeFieldResolver extends AbstractQueryableObje
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<string,mixed>
      */
     protected function getQuery(
         ObjectTypeResolverInterface $objectTypeResolver,
